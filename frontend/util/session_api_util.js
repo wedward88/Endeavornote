@@ -4,9 +4,8 @@ export const signup = (user) => {
         url: 'api/users',
         data: {
             user: {
-                username: user.username,
+                email: user.email,
                 password: user.password,
-                email: user.email
             }
         }
     });
@@ -18,7 +17,7 @@ export const login = (user) => {
         url: 'api/sessions',
         data: {
             user: {
-                username: user.username,
+                email: user.email,
                 password: user.password
             }
         }
