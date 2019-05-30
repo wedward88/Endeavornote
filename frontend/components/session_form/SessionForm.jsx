@@ -9,6 +9,10 @@ class SessionForm extends React.Component {
         this.handleSubmit = this.handleSubmit.bind(this);
     }
 
+    componentDidMount(){
+        
+    }
+
     handleChange(field) {
         return (e) => {
             this.setState({ [field]: e.target.value })
@@ -17,25 +21,50 @@ class SessionForm extends React.Component {
 
     handleSubmit(e) {
         e.preventDefault();
-        this.props.action(this.state);
-        this.setState({ email: '', password: ''});
+
+        if (this.props.verified){
+            this.props.login(this.state);
+            this.setState({ email: '', password: ''});
+            this.props.clearErrors();
+        } else {
+            this.props.checkEmail({ email: this.state.email });
+            this.props.clearErrors();
+        }
     }
 
     render() {
-        let buttonValue;
+        // debugger
         let redirectMessage;
         let linkPath;
         let linkText;
-        if (this.props.formType === 'login'){
-            buttonValue = 'Log in'
-            redirectMessage = "Don't have an account?"
-            linkPath = '/signup'
-            linkText = 'Create account'
+        let passwordInputType;
+        let buttonType;
+        let allErrors;
+        
+
+        if (this.props.errors.session.errors) {
+            allErrors = this.props.errors.session.errors.map((error, idx) => {
+                return <li key={idx}>{error}</li>
+            });
+            buttonType = 'hidden';
         } else {
-            buttonValue = 'Sign up'
-            redirectMessage = "Already have an account?"
-            linkPath = '/login'
-            linkText = 'Sign In'
+            buttonType = 'submit';
+        }
+
+        if (this.props.formType === 'login'){
+            redirectMessage = "Don't have an account?";
+            linkPath = '/signup';
+            linkText = 'Create account';
+            passwordInputType = 'hidden';
+        } else {
+            redirectMessage = "Already have an account?";
+            linkPath = '/login';
+            linkText = 'Sign In';
+            passwordInputType = 'password';
+        }
+        
+        if (this.props.verified){
+            passwordInputType = 'password';
         }
 
         return (
@@ -57,13 +86,17 @@ class SessionForm extends React.Component {
                             />
 
                             <input 
-                            type="password"
+                            type={passwordInputType}
                             value={this.state.password}
                             onChange={this.handleChange('password')}
                             placeholder='Password'
                             />
 
-                            <button type="submit">Continue</button>
+                            <button type={buttonType}>Continue</button>
+                            
+                            <ul>
+                                {allErrors}
+                            </ul>
                         </div>
 
 

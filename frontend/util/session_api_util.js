@@ -1,3 +1,14 @@
+export const checkEmail = (user) => {
+    return $.ajax({
+        url: 'api/sessions',
+        data: {
+            user: {
+                email: user.email,
+            }
+        }
+    });
+};
+
 export const signup = (user) => {
     return $.ajax({
         method: 'POST',

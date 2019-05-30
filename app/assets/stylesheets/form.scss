@@ -4,7 +4,6 @@
     width: 100%;
 }
 
-
 .login-signup-form-container {
     background-image: image-url('background-pattern.png');
     background-size: 200px 200px;
@@ -71,6 +70,16 @@
 
 #form-input input {
     border: 1px solid lightgray;
+}
+
+#form-input ul {
+    display: flex;
+    color: lightgray;
+    text-align: center;
+}
+
+#form-input input:focus {
+    outline: none;
 }
 
 #form-input input::placeholder {

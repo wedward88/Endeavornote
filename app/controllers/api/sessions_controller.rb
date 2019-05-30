@@ -10,6 +10,17 @@ class Api::SessionsController < ApplicationController
         end
     end
 
+    def check_email
+        @user = User.find_by(email: params[:user][:email])
+        
+        if @user
+            
+            render json: { email: @user.email }
+        else
+            render json: ['Email is not registered with Endeavornote!'], status: 418
+        end
+    end
+
     def destroy
         if current_user
             logout!

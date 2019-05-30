@@ -1,18 +1,23 @@
 import { connect } from 'react-redux';
 import SessionForm from './SessionForm';
-import { login } from '../../actions/session_actions';
+import { login, checkEmail, clearErrors } from '../../actions/session_actions';
 
 const msp = (state) => {
     return {
         errors: state.errors,
-        formType: 'login'
+        formType: 'login',
+        verified: Boolean(state.entities.user.email)
     }
 };
 
 const mdp = (dispatch) => {
+
     return {
-        action: (formData) => dispatch(login(formData))
+        login: (formData) => dispatch(login(formData)),
+        checkEmail: (formData) => dispatch(checkEmail(formData)),
+        clearErrors: ()=> dispatch(clearErrors()),
     }
+
 };
 
 export default connect(msp, mdp)(SessionForm);
