@@ -5,6 +5,9 @@
 }
 
 .login-signup-form-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
     background-image: image-url('background-pattern.png');
     background-size: 200px 200px;
     width: 100%;
@@ -17,9 +20,6 @@
     flex-direction: column;
     align-items: center;
     justify-content: space-around;
-    position: absolute;
-    top: 12%;
-    left: 33%;
     width: 515px;
     height: 640px;
     box-shadow: 0 0 24px 0px rgba(0, 0, 0, .1);
@@ -43,14 +43,16 @@
 }
 
 #form-title h1 {
-    margin-top: 0;
+    margin-top: -30px;
     font-size: 45px;
     font-weight: bold;
     font-family: 'Playfair Display', serif;
 }
 
 #form-title h2 {
+    margin-top: 15px;
     font-family: 'PT Sans', sans-serif;
+    color: #333333;
 }
 
 #form-input {
@@ -60,16 +62,17 @@
     
 }
 
-#form-input input[type=text], #form-input button, #form-input ul {
+#form-input input[type=email], #form-input input[type=text], #form-submit-button, #form-input ul {
     margin: 5px;
     height: 35px;
     border-radius: 6px;
     font-size: 18px;
-    padding: 5px;
+    padding: 5px 5px 5px 15px;
 }
 
 #form-input input {
-    border: 1px solid lightgray;
+    border: 1px solid #e6e6e6;
+    
 }
 
 #form-input ul {
@@ -82,6 +85,7 @@
     height: 0;
     opacity: 0;
     transition: height .5s ease;
+    
 }
 
 .password-field-show {
@@ -91,20 +95,24 @@
     margin: 5px;
     border-radius: 6px;
     font-size: 18px;
-    padding: 5px;
+    padding: 5px 5px 5px 15px;
     
 }
 
 #form-input input:focus, #form-input button:focus {
     outline: none;
+    box-shadow: 0 0 0 1px #ebf8f1;
+    border: 1px solid rgba(0, 0, 0, 0);
 }
+
 
 #form-input input::placeholder {
-    color: lightgray;
+    color: #6a6a6a;
     font-weight: lighter;
+    
 }
 
-#form-input button {
+#form-input button:not(:first-child) {
     background-color: #00a82d;
     height: 47px;
     color: white;
@@ -113,6 +121,25 @@
     font-size: 18px;
     font-weight: lighter;
     border: 0;
+}
+
+#demo-login-button {
+    background-color: white;
+    height: 47px;
+    color: #6a6a6a;
+    border: 1px solid #d0d0d0;
+    border-radius: 6px;
+    font-family: 'PT Sans', sans-serif;
+    font-size: 18px;
+    font-weight: lighter;
+    margin: 5px;
+    padding: 5px;
+   
+}
+
+#form-input hr{
+    height: 1px;
+    width: 30%;
 }
 
 #form-input button:hover {
