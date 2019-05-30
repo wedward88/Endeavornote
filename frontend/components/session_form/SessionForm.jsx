@@ -23,11 +23,18 @@ class SessionForm extends React.Component {
         e.preventDefault();
 
         if (this.props.verified){
-            this.props.login(this.state);
-            this.setState({ email: '', password: ''});
-            this.props.clearErrors();
+            if (this.props.formType === 'login'){
+                this.props.login(this.state);
+                this.setState({ email: '', password: ''});
+                this.props.clearErrors();
+            } else {
+                this.props.signup(this.state);
+                this.setState({ email: '', password: ''})
+                this.props.clearErrors();
+            }
         } else {
             this.props.checkEmail({ email: this.state.email });
+            document.getElementById('password-field').focus();
             this.props.clearErrors();
         }
     }
@@ -37,8 +44,7 @@ class SessionForm extends React.Component {
         let redirectMessage;
         let linkPath;
         let linkText;
-        let passwordInputType;
-        let buttonType;
+        let passwordClass;
         let allErrors;
         
 
@@ -46,25 +52,22 @@ class SessionForm extends React.Component {
             allErrors = this.props.errors.session.errors.map((error, idx) => {
                 return <li key={idx}>{error}</li>
             });
-            buttonType = 'hidden';
-        } else {
-            buttonType = 'submit';
-        }
+        } 
 
         if (this.props.formType === 'login'){
             redirectMessage = "Don't have an account?";
             linkPath = '/signup';
             linkText = 'Create account';
-            passwordInputType = 'hidden';
+            passwordClass = 'password-field-hidden';
         } else {
             redirectMessage = "Already have an account?";
             linkPath = '/login';
             linkText = 'Sign In';
-            passwordInputType = 'password';
+            passwordClass = 'password-field-show';
         }
         
         if (this.props.verified){
-            passwordInputType = 'password';
+            passwordClass = 'password-field-show';
         }
 
         return (
@@ -86,14 +89,16 @@ class SessionForm extends React.Component {
                             />
 
                             <input 
-                            type={passwordInputType}
+                            type="password"
+                            className={passwordClass}
+                            id="password-field"
                             value={this.state.password}
                             onChange={this.handleChange('password')}
                             placeholder='Password'
                             />
 
-                            <button type={buttonType}>Continue</button>
-                            
+                            <button type="submit">Continue</button>
+
                             <ul>
                                 {allErrors}
                             </ul>
@@ -102,7 +107,7 @@ class SessionForm extends React.Component {
 
                         <div id="form-redirect-info">
                             <span>{redirectMessage}</span>
-                            <Link to={linkPath}>{linkText}</Link>
+                            <Link onClick={this.props.clearErrors} to={linkPath}>{linkText}</Link>
                         </div>
 
                     </form>

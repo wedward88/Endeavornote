@@ -60,7 +60,7 @@
     
 }
 
-#form-input * {
+#form-input input[type=text], #form-input button, #form-input ul {
     margin: 5px;
     height: 35px;
     border-radius: 6px;
@@ -78,7 +78,24 @@
     text-align: center;
 }
 
-#form-input input:focus {
+.password-field-hidden {
+    height: 0;
+    opacity: 0;
+    transition: height .5s ease;
+}
+
+.password-field-show {
+    transition: height .5s, opacity .5s;
+    opacity: 100;
+    height: 35px;
+    margin: 5px;
+    border-radius: 6px;
+    font-size: 18px;
+    padding: 5px;
+    
+}
+
+#form-input input:focus, #form-input button:focus {
     outline: none;
 }
 
