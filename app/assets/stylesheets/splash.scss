@@ -15,25 +15,28 @@
 #nav-title {
     display: flex;
     align-items: center;
-    margin: 0 auto;
+    margin-left: 230px;
+}
+
+#nav-links {
+    
+    font-family: 'PT Sans', sans-serif;
+    margin-right: 230px;
 }
 
 #nav-title img {
-    width: 75px;
-    height: 75px;
+    width: 65px;
+    height: 65px;
 }
 
 #nav-title h1 {
     font-size: 30px;
     font-weight: bold;
     font-family: 'Playfair Display', serif;
+    margin-left: -10px;
 }
 
-#nav-links {
-    padding: 5%;
-    font-family: 'PT Sans', sans-serif;
-    margin: 0 auto;
-}
+
 
 #nav-links * {
     margin: 6px;
@@ -71,7 +74,7 @@
 }
 
 #splash-body-right {
-    margin-right: auto;
+    margin-right: 230px;
 }
 
 #splash-body-left {
@@ -79,7 +82,7 @@
     flex-direction: column;
     width: 500px;
     letter-spacing: 1px;
-    margin-left: auto;
+    margin-left: 230px;
 }
 
 #splash-body-left * {
@@ -91,6 +94,7 @@
     font-size: 50px;
     font-family: 'Open Sans', sans-serif;
     font-weight: bold;
+    line-height: 65px;
 }
 
 #splash-body-left h2 {
@@ -130,6 +134,6 @@
 }
 
 #splash-footer-icons {
-    margin-right: 238px;
+    margin-right: 230px;
 }
 
