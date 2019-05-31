@@ -12,7 +12,9 @@ class SessionForm extends React.Component {
 
     demoCredentials (){
         return (e) => {
-            this.setState({ email:'testuser@gmail.com', password:'testpassword'})
+            this.setState({ email:'testuser@gmail.com', password:'testpassword'}, ()=>{
+                return this.props.login(this.state);
+            })
         }
     }
 
@@ -28,7 +30,7 @@ class SessionForm extends React.Component {
         if (this.props.verified){
             if (this.props.formType === 'login'){
                 this.props.login(this.state);
-                this.setState({ email: '', password: ''});
+                this.setState({ [password]: ''});
                 this.props.clearErrors();
             } else {
                 this.props.signup(this.state);
@@ -53,7 +55,7 @@ class SessionForm extends React.Component {
 
         if (this.props.errors.session.errors) {
             allErrors = this.props.errors.session.errors.map((error, idx) => {
-                return <li key={idx}>{error}</li>
+                return <li key={idx} >{error}</li>
             });
         } 
 
@@ -106,11 +108,13 @@ class SessionForm extends React.Component {
                             placeholder='Password'
                             />
 
-                            <button id="form-submit-button" type="submit">Continue</button>
-
                             <ul>
                                 {allErrors}
                             </ul>
+
+                            <button id="form-submit-button" type="submit">Continue</button>
+
+                            
                         </div>
 
 

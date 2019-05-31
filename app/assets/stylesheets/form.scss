@@ -63,7 +63,7 @@
     margin-top: 22px;
 }
 
-#form-input input[type=email], #form-input input[type=text], #form-submit-button, #form-input ul {
+#form-input input[type=email], #form-input input[type=text], #form-submit-button {
   margin: 5px;
   box-sizing: border-box;
   height: 47px;
@@ -86,6 +86,22 @@
     color: lightgray;
     text-align: center;
 }
+
+
+#form-input li {
+    padding: 10px 0;
+    color: red;
+    font-family: 'Open Sans', sans-serif;
+    font-size: 12px;
+    animation-name: errors;
+    animation-duration: 2s;
+}
+
+@keyframes errors {
+  from {opacity: 0;}
+  to {opacity: 100;}
+}
+
 
 .password-field-hidden {
     height: 0;
