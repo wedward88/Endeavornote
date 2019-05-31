@@ -18,9 +18,9 @@ export default () => {
             </div>
             <section id="splash-footer">
                 <div id="splash-footer-icons" >
-                    <Link to='https://www.facebook.com/williamdunn195'><img src={window.facebookIcon}/></Link>
-                    <Link to='https://www.instagram.com/wedward88/'><img src={window.instagramIcon} /></Link>
-                    <Link to='https://www.linkedin.com/in/william-edward-dunn/'><img src={window.linkedinIcon} /></Link>
+                    <a href='https://www.facebook.com/williamdunn195' target='_blank'><img src={window.facebookIcon}/></a>
+                    <a href='https://www.instagram.com/wedward88/' target='_blank'><img src={window.instagramIcon} /></a>
+                    <a href='https://www.linkedin.com/in/william-edward-dunn/' target='_blank'><img src={window.linkedinIcon} /></a>
                 </div>
             </section>
         </div>
