@@ -23,6 +23,7 @@ export default () => {
                     <a href='https://www.facebook.com/williamdunn195' target='_blank'><img src={window.facebookIcon}/></a>
                     <a href='https://www.instagram.com/wedward88/' target='_blank'><img src={window.instagramIcon} /></a>
                     <a href='https://www.linkedin.com/in/william-edward-dunn/' target='_blank'><img src={window.linkedinIcon} /></a>
+                    <a href='https://github.com/wedward88' target='_blank' ><img src={window.githubIcon} id="github-icon" /></a>
                 </div>
             </section>
         </div>

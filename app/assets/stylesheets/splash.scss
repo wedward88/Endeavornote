@@ -135,13 +135,17 @@
     border-bottom: 1px solid #d0d0d0;
 }
 
-#splash-footer-line {
-    margin: 0 auto;
-    width: 90%;
+#splash-footer-icons {
+    display: flex;
+    align-items: center;
+
 }
 
-#splash-footer * {
-    padding: 6px;
+
+#github-icon{
+    width: 20px;
+    height: 20px;
+    padding-left: 5px;
 }
 
 
