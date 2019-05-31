@@ -80,9 +80,15 @@
 #splash-body-left {
     display: flex;
     flex-direction: column;
-    width: 500px;
+    max-width: 500px;
     letter-spacing: 1px;
-    
+
+}
+
+#splash-body-right {
+    width: calc(100% - 500px);
+    max-width: 500px;
+    height: auto;
 }
 
 #splash-body-left * {
