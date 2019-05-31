@@ -19,10 +19,10 @@ export const receiveNotebook = (notebook) => {
     };
 };
 
-export const deleteNotebook = (id) => {
+export const removeNotebook = (notebook) => {
     return {
         type: DELETE_NOTEBOOK,
-        id
+        notebook
     }
 }
 
@@ -41,5 +41,11 @@ export const retreiveNotebook = (notebook) => dispatch => {
 export const createNotebook = (notebook) => dispatch => {
     return NotebookApiUtil.createNotebook(notebook).then((notebook) => {
         return dispatch(receiveNotebook(notebook));
+    });
+};
+
+export const deleteNotebook = (notebook) => dispatch => {
+    return NotebookApiUtil.deleteNotebook(notebook).then((notebook)=> {
+        return dispatch(removeNotebook(notebook));
     });
 };
