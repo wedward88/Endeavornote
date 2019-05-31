@@ -23,6 +23,7 @@ export default () => {
                     <a href='https://www.linkedin.com/in/william-edward-dunn/' target='_blank'><img src={window.linkedinIcon} /></a>
                 </div>
             </section>
+            <div id="splash-footer-line" />
         </div>
     )
 }
