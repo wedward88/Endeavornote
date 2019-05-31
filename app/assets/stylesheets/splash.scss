@@ -3,6 +3,14 @@
     height: 100%;
 }
 
+.splash-width {
+    min-width: 600px;
+    width: 80%;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-around;
+}
+
 .landing-nav-bar {
     display: flex;
     align-items: center;
@@ -14,13 +22,13 @@
 #nav-title {
     display: flex;
     align-items: center;
-    margin-left: 230px;
+    
 }
 
 #nav-links {
     
     font-family: 'PT Sans', sans-serif;
-    margin-right: 230px;
+    
 }
 
 #nav-title img {
@@ -61,28 +69,20 @@
 #splash-body {
     background-image: image-url('main-green.png');
     background-color: #00a82d;
-    display: flex;
-    justify-content: space-around;
+    
     padding: 110px 0 0 0;
     height: 617px;
     box-sizing: border-box;
     overflow: scroll;
 }
 
-#splash-body-left, #splash-body-right {
-    padding: 10px;
-}
-
-#splash-body-right {
-    margin-right: 230px;
-}
 
 #splash-body-left {
     display: flex;
     flex-direction: column;
     width: 500px;
     letter-spacing: 1px;
-    margin-left: 230px;
+    
 }
 
 #splash-body-left * {
@@ -120,27 +120,22 @@
     text-transform: uppercase;
 }
 
-#splash-footer {
+.splash-footer {
     height: 140px;
-    width: 100%;
     display: flex;
     flex-direction: row;
     justify-content: flex-end;
     align-items: center;
-    
+    border-bottom: 1px solid #d0d0d0;
 }
 
 #splash-footer-line {
     margin: 0 auto;
     width: 90%;
-    border-bottom: 1px solid #d0d0d0;
 }
 
 #splash-footer * {
     padding: 6px;
 }
 
-#splash-footer-icons {
-    margin-right: 230px;
-}
 

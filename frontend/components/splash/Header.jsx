@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom';
 export default (props) => {
     // debugger
     return (
-        <div className="landing-nav-bar">
+        <div className="landing-nav-bar splash-width">
             <div id="nav-title">
                 <img src={window.endeavornoteIcon} />
                 <h1>Endeavornote</h1>
