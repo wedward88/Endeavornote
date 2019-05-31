@@ -10,12 +10,19 @@ export default () => {
                 <div id="splash-body-left">
                     <h1>Feel organized without the effort</h1>
                     <h2>Endeavornote helps you capture and prioritize ideas, projects, and to-do lists, so nothing falls through the cracks.</h2>
-                    <Link to='#' value="SIGN UP FOR FREE"></Link>
+                    <Link to='/signup'>sign up for free</Link>
                 </div>
                 <div id="splash-body-right">
                     <img src={window.splashHeroDesktop} />
                 </div>
             </div>
+            <section id="splash-footer">
+                <div id="splash-footer-icons" >
+                    <Link to='https://www.facebook.com/williamdunn195'><img src={window.facebookIcon}/></Link>
+                    <Link to='https://www.instagram.com/wedward88/'><img src={window.instagramIcon} /></Link>
+                    <Link to='https://www.linkedin.com/in/william-edward-dunn/'><img src={window.linkedinIcon} /></Link>
+                </div>
+            </section>
         </div>
     )
 }
