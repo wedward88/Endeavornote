@@ -9,16 +9,13 @@
     align-items: center;
     justify-content: space-between;
     height: 130px;
-    // width: 100%;
-    padding-left: 140px;
-    padding-right: 140px;
     background-color: white;
 }
 
 #nav-title {
     display: flex;
     align-items: center;
-    padding-left: 5%;
+    margin: 0 auto;
 }
 
 #nav-title img {
@@ -35,7 +32,7 @@
 #nav-links {
     padding: 5%;
     font-family: 'PT Sans', sans-serif;
-    margin-right: 2%; 
+    margin: 0 auto;
 }
 
 #nav-links * {
@@ -64,7 +61,7 @@
     background-color: #00a82d;
     display: flex;
     justify-content: space-around;
-    padding: 110px 40px 0 40px;
+    padding: 110px 0 0 0;
     height: 617px;
     box-sizing: border-box;
 }
