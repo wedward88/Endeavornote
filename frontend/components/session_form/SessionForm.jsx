@@ -87,7 +87,9 @@ class SessionForm extends React.Component {
 
                         <div id="form-input">
                             <button type="button" id="demo-login-button" onClick={this.demoCredentials()}>Continue with Demo User</button>
-                            {/* <hr/>or<hr/> */}
+                            <div id="stupid-line">
+                                <p><span>or</span></p>
+                            </div>
                             <input 
                             type="email"
                             value={this.state.email}
