@@ -3,7 +3,11 @@ import ReactDOM from 'react-dom';
 import configureStore from './store/store';
 import Root from './components/root';
 
-import { signup, login, logout, checkEmail } from './actions/session_actions';
+//for Testing
+// import { signup, login, logout, checkEmail } from './actions/session_actions';
+import { retreiveNotebooks, createNotebook, deleteNotebook } from './actions/notebook_actions';
+
+//end Testing
 
 document.addEventListener('DOMContentLoaded', ()=> {
 
@@ -27,10 +31,13 @@ document.addEventListener('DOMContentLoaded', ()=> {
     //for Testing:
     window.getState = store.getState;
     window.dispatch = store.dispatch;
-    window.login = login;
-    window.signup = signup;
-    window.logout = logout;
-    window.checkEmail = checkEmail;
+    // window.login = login;
+    // window.signup = signup;
+    // window.logout = logout;
+    // window.checkEmail = checkEmail;
+    window.retreiveNotebooks = retreiveNotebooks;
+    window.createNotebook = createNotebook;
+    window.deleteNotebook = deleteNotebook;
 
     // end Testing
 });

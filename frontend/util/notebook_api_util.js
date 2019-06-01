@@ -1,6 +1,9 @@
-export const fetchNotebooks = () => {
+export const fetchNotebooks = (user) => {
     return $.ajax({
         url: 'api/notebooks',
+        data: {
+            user_id: user.id
+        } 
     });
 };
 
@@ -23,6 +26,9 @@ export const createNotebook = (notebook) => {
 export const deleteNotebook = (notebook) => {
     return $.ajax({
         method: 'DELETE',
-        url: `api/notebooks/${notebook.id}`
+        url: `api/notebooks/${notebook.id}`,
+        data: {
+            user_id: notebook.user_id
+        }
     })
 }
