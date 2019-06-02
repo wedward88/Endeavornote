@@ -1,0 +1,67 @@
+.notebooks-index {
+    font-family: 'Roboto', sans-serif;
+    border: 1px solid black;
+    width: 100%;
+    padding: 30px;
+}
+
+.notebooks-index > h1 {
+    font-size: 20px;  
+    margin-bottom: 45px;
+}
+
+.index-sub-header {
+    display: flex;
+    justify-content: space-between;
+    margin: 10px 0;
+}
+
+.index-sub-header h2 {
+    font-size: 15px;
+}
+
+.index-sub-header :last-child {
+    color: #00a82d;
+    font-size: 14px;
+}
+
+
+.index-sub-header :last-child:hover {
+    cursor: pointer;
+}
+
+.notebooks-index table {
+    border-top: 2px solid #5b6b70;
+    width: 100%;
+}
+
+.notebooks-index th {
+    width: 25%;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    color: #b3b3b3;
+    text-transform: uppercase;
+    font-size: 11px;
+}
+
+.notebooks-index tr {
+    height: 40px;
+    display: flex;
+    justify-content: space-between;
+    color: #777
+}
+
+
+.notebooks-index td {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    width: 25%;
+}
+
+
+.notebooks-index table tbody tr:nth-child(odd) {
+    background-color: #f8f8f8;
+}
+

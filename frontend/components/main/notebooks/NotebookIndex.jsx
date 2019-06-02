@@ -29,7 +29,12 @@ class NotebookIndex extends React.Component {
         let modalForm;
         if (this.state.mounted) {
             tableData = this.props.notebooks.map((notebook)=> {
-                return <li key={notebook.id}>{notebook.name}</li>
+                return <tr key={notebook.id}>
+                    <td>{notebook.name}</td>
+                    <td>{this.props.user.email}</td>
+                    <td>{notebook.updated_at}</td>
+                    <td>...</td>
+                </tr>
             });
         }
 
@@ -41,18 +46,22 @@ class NotebookIndex extends React.Component {
             <section className="notebooks-index">
                 {modalForm}
                 <h1>Notebooks</h1>
+
                 <div className="index-sub-header">
                     <h2>My notebook list</h2>
                     <h2 onClick={this.newNotebook}>New Notebook</h2>
                 </div>
-                <ul>
-                    {/* {allNotebooks} */}
-                </ul>
+                
                 <table>
-                    <tr>
-                        <th>Title</th><th>Created By</th><th>Updated</th><th>Actions</th>
-                    </tr>
-                    {tableData}
+                    <tbody>
+                        <tr>
+                            <th>Title</th>
+                            <th>Created By</th>
+                            <th>Updated</th>
+                            <th>Actions</th>
+                        </tr>
+                        {tableData}
+                    </tbody>
                 </table>
             </section>
         )

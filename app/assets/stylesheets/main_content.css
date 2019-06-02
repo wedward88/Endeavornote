@@ -2,6 +2,7 @@
     width: 100%;
     height: 100%;
     display: flex;
+    font-family: 'Roboto', sans-serif;
 }
 .main-left-menu {
     background-color: #1a1a1a;
@@ -14,9 +15,44 @@
     padding: 20px;
 }
 
-.notebooks-index {
-    border: 1px solid black;
-    width: 100%;
-    padding: 30px;
+.user-dropdown:hover {
+    cursor: pointer;
+}
+
+.dropdown-hidden {
+    display: none;
+}
+
+.dropdown-shown {
+    background-color: white;
+    color: black;
+    z-index: 1;
+    position: absolute;
+    left: 20px;
+    min-width: 260px;
+    height: 250px;
+    border-radius: 3px;
+    border: 1px solid #ededed;
+}
+
+.new-note-button {
+    display: flex;
+    align-items: center;
+    margin: 12px 0;
+    height: 42px;
+    padding: 0 15px;
+}
+
+.new-note-button i {
+    border-radius: 50%;
+    background-color: white;
+    color: #00a82d;
+    margin-right: 8px;
+}
+.main-left-links li {
+    height: 32px;
+    display: flex;
+    align-items: center;
+    padding: 0px 8px 0px 18px;
 }
 
