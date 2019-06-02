@@ -1,0 +1,125 @@
+.modal-container {
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    background-color: rgba(42, 51, 60, .4);
+    z-index: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: 'Roboto', sans-serif;
+}
+
+.modal-container form {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    box-sizing: border-box;
+    background-color: white;
+    border-radius: 4px;
+    z-index: 2;
+    width: 550px;
+    height: 318px;
+}
+
+.form-top {
+    padding: 20px 25px 18px;
+}
+
+.form-top-title-container {
+    display: flex;
+    justify-content: space-between;
+}
+
+.form-top-title-container i {
+    color: #dcdfe3;
+    width: 20px;
+    height: 20px;
+}
+
+.form-top h1 {
+    font-size: 18px;
+    font-weight: normal;
+}
+
+.modal-form-input {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    padding: 0 25px;
+}
+
+.form-top p {
+    font-size: 14px;
+    color: #333;
+    line-height: 20px;
+    padding-top: 20px;
+    font-weight: normal;
+}
+
+.modal-form-input label {
+    display: flex;
+    flex-direction: column;
+}
+
+.modal-form-input span {
+    font-size: 12px;
+    color: #7a8083;
+    margin-bottom: 5px;
+}
+
+.modal-form-input input {
+    font-size: 16px;
+    height: 40px;
+    border-radius: 5px;
+    border: 1px solid #e1e1e1;
+    padding: 5px 5px 5px 15px;
+}
+
+.modal-form-input input:focus {
+    outline: none;
+}
+
+.modal-form-input input::placeholder {
+    color: #6a6a6a;
+    font-weight: lighter;
+}
+
+.modal-buttons-container {
+    display: flex;
+    justify-content: flex-end;
+    border-top: 1px solid #e6e6e6;
+    padding: 20px 25px;
+    margin-top: 50px;
+    font-weight: bold;
+}
+
+.modal-buttons-container * {
+    padding: 10px 15px;
+    border-radius: 4px;
+    color: #b3b3b3;
+    font-size: 14px;
+}
+
+.modal-buttons-container :first-child {
+    margin-right: 10px;
+    border: 1px solid #ededed;
+}
+
+.modal-buttons-container :first-child:hover {
+    border: 1px solid #c3c3c3;
+    cursor: pointer;
+}
+
+.modal-submit-button {
+    background-color: #dcdfe3;
+    color: white;
+    border: none;
+}
+.modal-submit-button-valid {
+    background-color: #00a82d;
+    color: white;
+    
+}
