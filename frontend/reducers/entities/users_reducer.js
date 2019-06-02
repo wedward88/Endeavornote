@@ -13,9 +13,9 @@ const usersReducer = (state = { notebookIds: [] }, action) => {
             }
             return merge({}, state, newState, { [action.currentUser.id]: action.currentUser });
         case LOGOUT_CURRENT_USER:
-            return {};
+            return { notebookIds: [] };
         case RECEIVE_USER_EMAIL:
-            return merge({}, state, { email: action.email} );
+            return merge({}, state, { email: action.email } );
         case RECEIVE_NOTEBOOKS:
                 newState = merge({}, state);
                 action.notebooks.forEach((notebook)=> {
@@ -32,8 +32,6 @@ const usersReducer = (state = { notebookIds: [] }, action) => {
                 let notebookIdx = notebookArr.indexOf(action.notebook.id);
             delete notebookArr[notebookIdx];
             return newState;
-        case CLEAR_ERRORS:
-            return {};
         default:
             return state;
     }

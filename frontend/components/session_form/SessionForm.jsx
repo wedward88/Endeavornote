@@ -30,7 +30,7 @@ class SessionForm extends React.Component {
         if (this.props.verified){
             if (this.props.formType === 'login'){
                 this.props.login(this.state);
-                this.setState({ [password]: ''});
+                this.setState({ password: ''});
                 this.props.clearErrors();
             } else {
                 this.props.signup(this.state);
