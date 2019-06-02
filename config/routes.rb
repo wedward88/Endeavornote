@@ -5,6 +5,7 @@ Rails.application.routes.draw do
   namespace :api, defaults: {format: :json} do
     resources :users, only: [:create]
     resources :notebooks, only: [:create, :destroy, :show, :index]
+    resources :notes, only: [:create, :destroy, :show, :index]
     resource :sessions, only: [:create, :destroy]
 
     get 'sessions', to: 'sessions#check_email'

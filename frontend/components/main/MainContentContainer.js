@@ -3,10 +3,8 @@ import { logout } from '../../actions/session_actions';
 import MainContent from './MainContent';
 
 const msp = (state) => {
-
-    let currentUserId = state.session.currentUserId
     return {
-        user: state.entities.user[currentUserId]
+        user: state.entities.user[state.session.currentUserId]
     }
 }
 

@@ -3,7 +3,7 @@ class Api::NotebooksController < ApplicationController
     def index
         @user = User.find(params[:user_id])
         @notebooks = @user.notebooks
-        render json: @notebooks
+        render :index
     end
 
     def show

@@ -8,18 +8,22 @@ const notebooksReducer = (state = {}, action) => {
     switch (action.type) {
         case RECEIVE_NOTEBOOKS:
             const newNotebooks = {};
-            action.notebooks.forEach((notebook) => {
+            Object.values(action.notebooks).forEach((notebook) => {
                 newNotebooks[notebook.id] = notebook;
             });
             return merge({}, state, newNotebooks);
+
         case RECEIVE_ONE_NOTEBOOK:
             return merge({}, state, { [action.notebook.id]: action.notebook });
+
         case DELETE_NOTEBOOK:
             const newState = merge({}, state );
             delete newState[action.notebook.id];
             return newState;
+
         case LOGOUT_CURRENT_USER:
             return {};
+            
         default:
             return state;
     }

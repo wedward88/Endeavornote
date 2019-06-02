@@ -30,5 +30,5 @@ export const deleteNotebook = (notebook) => {
         data: {
             user_id: notebook.user_id
         }
-    })
-}
+    });
+};

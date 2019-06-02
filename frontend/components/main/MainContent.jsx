@@ -1,6 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import NotebookIndexContainer from './notebooks/NotebookIndexContainer';
+import NotesIndexContainer from './notes/NotesIndexContainer';
 import { ProtectRoute } from '../../util/route_util';
 
 
@@ -27,8 +28,8 @@ class MainContent extends React.Component {
                     </ul>
                     <div className="new-note-button"><i className="fas fa-plus-circle fa-2x"></i>New Note</div>
                     <ul className="main-left-links">
-                        <li>All Notes</li>
-                        <li>Notebooks</li>
+                        <li><Link to="/main/notes">All Notes</Link></li>
+                        <li><Link to="/main/notebooks">Notebooks</Link></li>
                         <li>Tags</li>
                         <li>Trash</li>
                     </ul>
@@ -37,6 +38,7 @@ class MainContent extends React.Component {
                     {/* <NotebookIndex user={this.props.user} retreiveNotebooks={this.props.retreiveNotebooks} notebooks={this.props.notebooks}/> */}
                
                 <ProtectRoute path='/main/notebooks' component={NotebookIndexContainer} />
+                <ProtectRoute path='/main/notes' component={NotesIndexContainer} />
 
 
                 <section className="main-third-panel">
