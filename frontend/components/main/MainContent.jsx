@@ -1,6 +1,8 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import NotebookIndex from './notebooks/NotebookIndex';
+import NotebookIndexContainer from './notebooks/NotebookIndexContainer';
+import { ProtectRoute } from '../../util/route_util';
+
 
 class MainContent extends React.Component {
     constructor(props) {
@@ -32,7 +34,10 @@ class MainContent extends React.Component {
                     </ul>
                 </section>
 
-                <NotebookIndex user={this.props.user} retreiveNotebooks={this.props.retreiveNotebooks} notebooks={this.props.notebooks}/>
+                    {/* <NotebookIndex user={this.props.user} retreiveNotebooks={this.props.retreiveNotebooks} notebooks={this.props.notebooks}/> */}
+               
+                <ProtectRoute path='/main/notebooks' component={NotebookIndexContainer} />
+
 
                 <section className="main-third-panel">
 

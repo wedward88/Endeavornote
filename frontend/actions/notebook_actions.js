@@ -26,13 +26,13 @@ export const removeNotebook = (notebook) => {
     }
 }
 
-export const retreiveNotebooks = (user) => dispatch => {
+export const retrieveNotebooks = (user) => dispatch => {
     return NotebookApiUtil.fetchNotebooks(user).then((notebooks) => {
         return dispatch(receiveNotebooks(notebooks));
     });
 };
 
-export const retreiveNotebook = (notebook) => dispatch => {
+export const retrieveNotebook = (notebook) => dispatch => {
     return NotebookApiUtil.fetchNotebook(notebook).then((notebook) => {
         return dispatch(receiveNotebook(notebook));
     });

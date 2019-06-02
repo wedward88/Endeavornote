@@ -5,7 +5,7 @@ import Root from './components/root';
 
 //for Testing
 // import { signup, login, logout, checkEmail } from './actions/session_actions';
-import { retreiveNotebooks, createNotebook, deleteNotebook } from './actions/notebook_actions';
+import { retrieveNotebooks, createNotebook, deleteNotebook } from './actions/notebook_actions';
 
 //end Testing
 
@@ -35,7 +35,7 @@ document.addEventListener('DOMContentLoaded', ()=> {
     // window.signup = signup;
     // window.logout = logout;
     // window.checkEmail = checkEmail;
-    window.retreiveNotebooks = retreiveNotebooks;
+    window.retrieveNotebooks = retrieveNotebooks;
     window.createNotebook = createNotebook;
     window.deleteNotebook = deleteNotebook;
 

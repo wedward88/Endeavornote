@@ -3,7 +3,9 @@ import SplashPage from './splash/Splash';
 import LoginFormContainer from './session_form/LoginFormContainer';
 import SignupFormContainer from './session_form/SignupFormContainer';
 import MainContentContainer from '../components/main/MainContentContainer';
+import NotebookIndexContainer from './main/notebooks/NotebookIndexContainer';
 import { AuthRoute, ProtectRoute } from '../util/route_util';
+
 
 
 const App = () => {
