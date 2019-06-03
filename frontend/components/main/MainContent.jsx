@@ -24,7 +24,14 @@ class MainContent extends React.Component {
                 <section className="main-left-menu">
                     <div onClick={this.toggleClass} className="user-dropdown">{this.props.user.email}</div>
                     <ul className={this.state.active ? "dropdown-shown" : "dropdown-hidden"}>
-                        <li onClick={this.props.logout}>Sign out {this.props.user.email}</li>
+                        <li>
+                            <h3>Account</h3>
+                            <h2>{this.props.user.email}</h2>
+                        </li>
+                        <li><p>Settings</p></li>
+                        <li><p>Help</p></li>
+                        <li><p>What's new in Endeavornote</p></li>
+                        <li onClick={this.props.logout}><p>Sign Out {this.props.user.email}</p></li>
                     </ul>
                     <div className="new-note-button"><i className="fas fa-plus-circle fa-2x"></i>New Note</div>
                     <ul className="main-left-links">
