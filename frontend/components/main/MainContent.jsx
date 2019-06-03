@@ -12,9 +12,15 @@ class MainContent extends React.Component {
         this.toggleClass = this.toggleClass.bind(this);
     }
 
-    toggleClass () {
-        this.setState({ active: !this.state.active })
+    toggleClass (e) {
+        this.setState({ active: !this.state.active });
     }
+
+
+
+    // handleLogout(e) {
+
+    // }
 
     render () {
 
@@ -22,7 +28,7 @@ class MainContent extends React.Component {
         return (
             <div className="main-content-container">
                 <section className="main-left-menu">
-                    <div onClick={this.toggleClass} className="user-dropdown">{this.props.user.email}</div>
+                    <div tabIndex='2' onFocus={(e)=>this.toggleClass(e)} onBlur={(e)=>this.toggleClass(e)} className="user-dropdown">{this.props.user.email}
                     <ul className={this.state.active ? "dropdown-shown" : "dropdown-hidden"}>
                         <li>
                             <h3>Account</h3>
@@ -33,6 +39,7 @@ class MainContent extends React.Component {
                         <li><p>What's new in Endeavornote</p></li>
                         <li onClick={this.props.logout}><p>Sign Out {this.props.user.email}</p></li>
                     </ul>
+                    </div>
                     <div className="new-note-button"><i className="fas fa-plus-circle fa-2x"></i>New Note</div>
                     <ul className="main-left-links">
                         <li><Link to="/main/notes">All Notes</Link></li>
