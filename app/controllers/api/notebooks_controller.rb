@@ -1,8 +1,8 @@
 class Api::NotebooksController < ApplicationController
 
     def index
-        @user = User.find(params[:user_id])
-        @notebooks = @user.notebooks
+        @user = current_user
+        @notebooks = @user.notebooks.includes(:notes)
         render :index
     end
 
@@ -14,6 +14,15 @@ class Api::NotebooksController < ApplicationController
     def create
         @notebook = Notebook.new(notebook_params)
         if @notebook.save
+            render json: @notebook
+        else
+            render json: @notebook.errors.full_messages, status: 422
+        end
+    end
+
+    def update
+        @notebook = Notebook.find(params[:id])
+        if @notebook.update(notebook_params)
             render json: @notebook
         else
             render json: @notebook.errors.full_messages, status: 422

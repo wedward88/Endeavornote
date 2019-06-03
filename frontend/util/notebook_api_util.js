@@ -7,9 +7,13 @@ export const fetchNotebooks = (user) => {
     });
 };
 
-export const fetchNotebook = (notebook) => {
+export const editNotebook = (notebook) => {
     return $.ajax({
-        url: `api/notebooks/${notebook.id}`
+        method: 'PATCH',
+        url: `api/notebooks/${notebook.id}`,
+        data: {
+            notebook
+        }
     });
 }
 

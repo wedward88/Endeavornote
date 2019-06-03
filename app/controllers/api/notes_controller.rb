@@ -1,13 +1,8 @@
 class Api::NotesController < ApplicationController
 
     def index
-        @notebooks = Notebook.where(user_id: params[:user_id])
-        @notes = []
-        @notebooks.each do |notebook|
-            notebook.notes.each do |note|
-                @notes << note
-            end
-        end
+        @notebooks = current_user.notebooks
+        @notes = current_user.notes
 
         render :index
     end
@@ -23,6 +18,15 @@ class Api::NotesController < ApplicationController
             render json: @notebook
         else
             render json: @notebook.errors.full_messages, status: 422
+        end
+    end
+
+    def update
+        @note = Note.find(params[:id])
+        if @note.update(note_params)
+            render json: @note
+        else
+            render json: @note.errors.full_messages, status: 422
         end
     end
 

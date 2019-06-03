@@ -17,5 +17,9 @@ class Note < ApplicationRecord
         primary_key: :id,
         foreign_key: :notebook_id,
         class_name: :Notebook
+    
+    has_one :user,
+        through: :notebook,
+        source: :user
 
 end

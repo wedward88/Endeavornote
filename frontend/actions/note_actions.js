@@ -31,8 +31,8 @@ export const retrieveNotes = (user) => dispatch => {
     });
 };
 
-export const retrieveNote = (note) => dispatch => {
-    return NoteApiUtil.fetchNote(note).then((note)=> {
+export const editNote = (note) => dispatch => {
+    return NoteApiUtil.editNote(note).then((note)=> {
         return dispatch(receiveNote(note));
     });
 };

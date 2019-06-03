@@ -29,12 +29,14 @@ const usersReducer = (state = {}, action) => {
 
         case RECEIVE_ONE_NOTEBOOK:
                 newState = merge({}, state);
-                newState[action.notebook.user_id].notebook_ids.push(action.notebook.id);
+                if (!newState[action.notebook.user_id].notebook_ids.includes(action.notebook.id)){
+                    newState[action.notebook.user_id].notebook_ids.push(action.notebook.id);
+                }
             return newState;
 
         case DELETE_NOTEBOOK:
                 newState = merge({}, state);
-                let notebookArr = newState[action.notebook.user_id];
+                let notebookArr = newState[action.notebook.user_id].notebook_ids;
                 let notebookIdx = notebookArr.indexOf(action.notebook.id);
             delete notebookArr[notebookIdx];
             return newState;

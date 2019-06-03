@@ -96,6 +96,10 @@
     font-weight: bold;
 }
 
+.modal-buttons-container button:focus {
+    outline: none;
+}
+
 .modal-buttons-container * {
     padding: 10px 15px;
     border-radius: 4px;
@@ -121,5 +125,4 @@
 .modal-submit-button-valid {
     background-color: #00a82d;
     color: white;
-    
 }

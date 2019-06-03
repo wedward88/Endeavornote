@@ -7,9 +7,13 @@ export const fetchNotes = (user) => {
     });
 };
 
-export const fetchNote = (note) => {
+export const editNote = (note) => {
     return $.ajax({
-        url: `api/notes/${note.id}`
+        method: 'PATCH',
+        url: `api/notes/${note.id}`,
+        data: {
+            note,
+        }
     });
 };
 

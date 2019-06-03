@@ -32,8 +32,8 @@ export const retrieveNotebooks = (user) => dispatch => {
     });
 };
 
-export const retrieveNotebook = (notebook) => dispatch => {
-    return NotebookApiUtil.fetchNotebook(notebook).then((notebook) => {
+export const editNotebook = (notebook) => dispatch => {
+    return NotebookApiUtil.editNotebook(notebook).then((notebook) => {
         return dispatch(receiveNotebook(notebook));
     });
 };

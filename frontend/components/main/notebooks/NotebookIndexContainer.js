@@ -1,6 +1,6 @@
 import { connect } from 'react-redux';
 import NotebookIndex from './NotebookIndex';
-import { retrieveNotebooks } from '../../../actions/notebook_actions';
+import { retrieveNotebooks, deleteNotebook } from '../../../actions/notebook_actions';
 
 const msp = (state) => {
     return {
@@ -11,7 +11,8 @@ const msp = (state) => {
 
 const mdp = (dispatch) => {
     return {
-        retrieveNotebooks: (user) => dispatch(retrieveNotebooks(user))
+        retrieveNotebooks: (user) => dispatch(retrieveNotebooks(user)),
+        deleteNotebook: (notebook) => dispatch(deleteNotebook(notebook))
     }
 }
 
