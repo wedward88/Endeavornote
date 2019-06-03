@@ -4,6 +4,7 @@
     flex-direction: column;
     border-right: 1px solid #e6e6e6;
     background-color: #f8f8f8;
+    overflow: scroll;
 }
 
 .notes-index-header {
