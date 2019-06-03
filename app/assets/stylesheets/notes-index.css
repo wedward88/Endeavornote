@@ -14,7 +14,7 @@
     height: 136px;
     border-bottom: 1px solid #ededed;
     padding: 33px 18px 30px 25px;
-    box-sizing: border-box;
+   
 }
 
 .notes-index-header h1 {
@@ -23,6 +23,10 @@
 .notes-index-header h3 {
     font-size: 13px;
     color: #a6a6a6;
+}
+
+.notes-index-list-container {
+    overflow: scroll;
 }
 
 .notes-index-list-container ul li {
