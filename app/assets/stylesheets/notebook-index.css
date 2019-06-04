@@ -30,12 +30,12 @@
     cursor: pointer;
 }
 
-.notebooks-index table {
+.notebook-table {
     border-top: 2px solid #5b6b70;
     width: 100%;
 }
 
-.notebooks-index th {
+.notebook-table-header {
     width: 25%;
     display: flex;
     justify-content: flex-start;
@@ -45,32 +45,53 @@
     font-size: 11px;
 }
 
-.notebooks-index th:last-child {
+.notebook-table-header:last-child {
     justify-content: flex-end;
     padding: 10px;
 }
 
-.notebooks-index tr {
+
+
+.notebook-table-row {
     height: 40px;
     display: flex;
     justify-content: space-between;
     color: #777
 }
 
-.notebooks-index tr td:first-child, .notebooks-index tr th:first-child {
-    padding: 10px;
+.notebook-notes-row-hide {
+    display: none;
+}
+
+.notebook-table-data {
+    overflow: auto;
+    font-size: 14px;
+    width: 25%;
+    box-sizing: border-box;
 }
 
 
-.notebooks-index td:not(:last-child) {
+
+
+.notebook-table-data:not(:last-child) {
     display: flex;
     align-items: center;
-    width: 25%;
+}
+
+.notebook-table-data:last-child {
+    display: flex;
+    justify-content: flex-end;
 }
 
 
-.notebooks-index table tbody tr:nth-child(odd) {
+.notebook-table-row-container:nth-child(odd) {
     background-color: #f8f8f8;
+}
+.notebook-notes-row:nth-child(odd) {
+    background-color: #f8f8f8;
+}
+.notebook-notes-row:nth-child(even) {
+    background-color: white;
 }
 
 .notebook-table-action-item {
@@ -124,5 +145,18 @@
 .notebook-actions-show li:hover {
     cursor: pointer;
     background-color: #f2f2f2;
+}
+
+.notebook-title h3:hover {
+    cursor: pointer;
+    text-decoration: underline;
+}
+
+.notebook-title {
+    padding: 10px;
+}
+
+.notes-title {
+    padding-left: 52px;
 }
 
