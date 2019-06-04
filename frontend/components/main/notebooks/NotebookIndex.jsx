@@ -1,5 +1,6 @@
 import React from 'react';
 import NotebookFormContainer from './NotebookFormContainer';
+import formatDate from '../../../util/date_util';
 
 class NotebookIndex extends React.Component {
 
@@ -8,7 +9,8 @@ class NotebookIndex extends React.Component {
         this.state = { 
             mounted: false, 
             modalOpen: false, 
-            active: 0, 
+            active: 0,
+            rowOpen: 0, 
             formType: "newNotebook", 
             currentNotebook: null 
         }
@@ -16,6 +18,7 @@ class NotebookIndex extends React.Component {
         this.toggleModal = this.toggleModal.bind(this);
         this.removeClass = this.removeClass.bind(this);
         this.closeModal = this.closeModal.bind(this);
+        this.toggleRow = this.toggleRow.bind(this);
     }
     
     componentDidMount() {
@@ -55,47 +58,65 @@ class NotebookIndex extends React.Component {
     addClass(id) {
         this.setState({ ['active']: id})
     }
+    
+    toggleRow(id) {
+        if (id === this.state.rowOpen) {
+            this.setState({ ['rowOpen']: 0 })
+        } else {
+            this.setState({ ['rowOpen']: id })
+        }
+    }
 
     render () {
         
         let tableData;
         let modalForm;
-        let notesArr;
+        
 
         if (this.state.mounted) {
-            notesArr = this.props.notes;
-            
+            let notesArr = this.props.notes;
+  
             tableData = this.props.notebooks.map((notebook)=> {
-
-                // let notebookNotes = notesArr.map((note)=>{
-                //     if (note.notebook_id === notebook.id){
-                //         return (
-                //             <tr key={note} id={`notes-row-${note.id}`}>
-                //                 <td>{note.title}</td>
-                //                 <td>{this.props.user.email}</td>
-                //                 <td>{note.updated_at}</td>
-                //             </tr>
-                //         ) 
-                //     }
-                // })
-
+                let noteCount = 0
+                let notebookNotes = notesArr.map((note)=>{
+                    if (note.notebook_id === notebook.id){
+                        noteCount += 1;
+                        return (
+                            <div className={this.state.rowOpen === notebook.id ? "notebook-notes-row notebook-table-row" : "notebook-notes-row-hide"} key={note.id} >
+                                <div className="notebook-table-data notes-data notes-title">{note.title.length < 40 ? note.title : note.title.substring(0, 37) + "..."}</div>
+                                <div className="notebook-table-data notes-data">{this.props.user.email}</div>
+                                <div className="notebook-table-data notes-data">{formatDate(note.updated_at)}</div>
+                                <div className="notebook-table-data notes-data"></div>
+                            </div>
+                        ) 
+                    }
+                })
+                
+                
                 return (
-                        // <>
-                            <tr key={notebook.id}>
-                                <td>{notebook.name}</td>
-                                <td>{this.props.user.email}</td>
-                                <td>{notebook.updated_at}</td>
-                                <td className="notebook-table-action-item">
-                                <div tabIndex="1" onBlur={()=> this.removeClass(notebook.id)} onFocus={()=>this.addClass(notebook.id)} className="notebook-table-actions" >...
+                        <div className="notebook-table-row-container" key={notebook.id}>
+                            <div className="notebook-table-row">
+                            <div onClick={() => this.toggleRow(notebook.id)} className="notebook-table-data notebook-title">
+                                <h3>{notebook.name}</h3>
+                                <p className="noteCount">&nbsp;({noteCount})</p>
+                                </div>
+                                <div className="notebook-table-data">{this.props.user.email}</div>
+                                <div className="notebook-table-data">{formatDate(notebook.updated_at)}</div>
+                                <div className="notebook-table-data notebook-table-action-item ">
+                                <div tabIndex="1" 
+                                    onBlur={() => this.removeClass(notebook.id)} 
+                                    onFocus={() => this.addClass(notebook.id)} 
+                                    className="notebook-table-actions notebook-table-data" 
+                                >...
                                     <ul className={this.state.active === notebook.id ? "notebook-actions-show" : "notebook-actions-hidden"}>
                                         <li onClick={()=>this.toggleModal('editForm', notebook)}>Rename Notebook</li>
                                         <li onClick={()=> this.props.deleteNotebook(notebook)}>Delete Notebook</li>
                                     </ul>
                                 </div>
-                                </td>
-                            </tr>
-                            // { notebookNotes }
-                        // </>
+                                </div>
+                            </div>
+                            { notebookNotes }
+                        </div>
                         
                 )
             });
@@ -120,18 +141,18 @@ class NotebookIndex extends React.Component {
                     <h2 onClick={this.toggleModal}>New Notebook</h2>
                 </div>
                 
-                <table>
-                    <tbody>
-                        <tr>
-                            <th>Title</th>
-                            <th>Created By</th>
-                            <th>Updated</th>
-                            <th>Actions</th>
-                        </tr>
+                <div className="notebook-table">
+                    <div className="notebook-table-row table-header">
+                        <div className="notebook-table-header header-title">Title</div>
+                        <div className="notebook-table-header">Created By</div>
+                        <div className="notebook-table-header">Updated</div>
+                        <div className="notebook-table-header">Actions</div>
+                    </div>
+                    <div className="notebook-table-body">
                         {tableData}
-                    </tbody>
+                    </div>
                     
-                </table>
+                </div>
             </section>
         )
     }
