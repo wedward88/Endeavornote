@@ -2,6 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import NotebookIndexContainer from './notebooks/NotebookIndexContainer';
 import NotesIndexContainer from './notes/NotesIndexContainer';
+import NoteEditorContainer from './notes/NoteEditor';
 import { ProtectRoute } from '../../util/route_util';
 
 
@@ -53,7 +54,7 @@ class MainContent extends React.Component {
                
                 <ProtectRoute path='/main/notebooks' component={NotebookIndexContainer} />
                 <ProtectRoute path='/main/notes' component={NotesIndexContainer} />
-
+                <ProtectRoute path='/main/notes/editor' component={NoteEditorContainer} />
 
                 <section className="main-third-panel">
 
