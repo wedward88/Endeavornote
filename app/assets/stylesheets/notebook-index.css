@@ -35,8 +35,12 @@
     width: 100%;
 }
 
+.table-header {
+    background-color: #f8f8f8;
+}
+
 .notebook-table-header {
-    width: 25%;
+    width: 15%;
     display: flex;
     justify-content: flex-start;
     align-items: center;
@@ -47,7 +51,6 @@
 
 .notebook-table-header:last-child {
     justify-content: flex-end;
-    padding: 10px;
 }
 
 
@@ -55,21 +58,24 @@
 .notebook-table-row {
     height: 40px;
     display: flex;
-    justify-content: space-between;
+    justify-content: space-around;
     color: #777
 }
+
 
 .notebook-notes-row-hide {
     display: none;
 }
 
 .notebook-table-data {
-    overflow: auto;
     font-size: 14px;
-    width: 25%;
-    box-sizing: border-box;
+    width: 15%;
+    display: block;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    
 }
-
 
 
 
@@ -81,10 +87,13 @@
 .notebook-table-data:last-child {
     display: flex;
     justify-content: flex-end;
+    width: 15%;
+    height: 40px;
+    
 }
 
 
-.notebook-table-row-container:nth-child(odd) {
+.notebook-table-row-container:nth-child(even) {
     background-color: #f8f8f8;
 }
 .notebook-notes-row:nth-child(odd) {
@@ -99,8 +108,8 @@
     justify-content: flex-end;
     align-items: center;
     height: 10px;
-    width: 25%;
-    padding: 10px;
+    width: 15%;
+    
 }
 
 .notebook-table-action-item div:focus, .notebook-table-action-item ul:focus {
@@ -152,11 +161,22 @@
     text-decoration: underline;
 }
 
-.notebook-title {
-    padding: 10px;
+.notebook-title, .header-title {
+    width: 40%;
+    
+}
+
+
+.notebook-title h3 {
+    display: block;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 
 .notes-title {
-    padding-left: 52px;
+    width: 36%;
+    padding-left: 4%;
 }
+
 

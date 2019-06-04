@@ -1,5 +1,6 @@
 import React from 'react';
 import NotebookFormContainer from './NotebookFormContainer';
+import formatDate from '../../../util/date_util';
 
 class NotebookIndex extends React.Component {
 
@@ -70,39 +71,38 @@ class NotebookIndex extends React.Component {
         
         let tableData;
         let modalForm;
+        
 
         if (this.state.mounted) {
             let notesArr = this.props.notes;
-            
+  
             tableData = this.props.notebooks.map((notebook)=> {
                 let noteCount = 0
                 let notebookNotes = notesArr.map((note)=>{
                     if (note.notebook_id === notebook.id){
                         noteCount += 1;
                         return (
-                            <div className={this.state.rowOpen === notebook.id ? "notebook-notes-row notebook-table-row" : "notebook-notes-row-hide"} 
-                                key={note.id} 
-                                id={`notes-row-${note.id}`}
-                            >
+                            <div className={this.state.rowOpen === notebook.id ? "notebook-notes-row notebook-table-row" : "notebook-notes-row-hide"} key={note.id} >
                                 <div className="notebook-table-data notes-data notes-title">{note.title.length < 40 ? note.title : note.title.substring(0, 37) + "..."}</div>
                                 <div className="notebook-table-data notes-data">{this.props.user.email}</div>
-                                <div className="notebook-table-data notes-data">{note.updated_at}</div>
+                                <div className="notebook-table-data notes-data">{formatDate(note.updated_at)}</div>
                                 <div className="notebook-table-data notes-data"></div>
                             </div>
                         ) 
                     }
                 })
-    
+                
+                
                 return (
                         <div className="notebook-table-row-container" key={notebook.id}>
                             <div className="notebook-table-row">
                             <div onClick={() => this.toggleRow(notebook.id)} className="notebook-table-data notebook-title">
-                                <h3>{notebook.name.length < 40 ? notebook.name : notebook.name.substring(0, 37) + "..."}</h3>
+                                <h3>{notebook.name}</h3>
                                 <p className="noteCount">&nbsp;({noteCount})</p>
                                 </div>
                                 <div className="notebook-table-data">{this.props.user.email}</div>
-                                <div className="notebook-table-data">{notebook.updated_at}</div>
-                                <div className="notebook-table-action-item notebook-table-data">
+                                <div className="notebook-table-data">{formatDate(notebook.updated_at)}</div>
+                                <div className="notebook-table-data notebook-table-action-item ">
                                 <div tabIndex="1" 
                                     onBlur={() => this.removeClass(notebook.id)} 
                                     onFocus={() => this.addClass(notebook.id)} 
@@ -142,8 +142,8 @@ class NotebookIndex extends React.Component {
                 </div>
                 
                 <div className="notebook-table">
-                    <div className="notebook-table-row">
-                        <div className="notebook-table-header">Title</div>
+                    <div className="notebook-table-row table-header">
+                        <div className="notebook-table-header header-title">Title</div>
                         <div className="notebook-table-header">Created By</div>
                         <div className="notebook-table-header">Updated</div>
                         <div className="notebook-table-header">Actions</div>
