@@ -2,10 +2,8 @@ class Api::UsersController < ApplicationController
 
     def create
         @user = User.new(user_params)
-        @user.save
-        defaultBook = Notebook.create!(name: 'First Notebook!', user_id: @user.id)
-        @user.default_notebook = defaultBook.id
-        if @user.id
+        
+        if @user.save
             login!(@user)
             render :show
         else

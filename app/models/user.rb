@@ -2,29 +2,45 @@
 #
 # Table name: users
 #
-#  id              :bigint           not null, primary key
-#  email           :string           not null
-#  password_digest :string           not null
-#  session_token   :string           not null
-#  created_at      :datetime         not null
-#  updated_at      :datetime         not null
+#  id                  :bigint           not null, primary key
+#  email               :string           not null
+#  password_digest     :string           not null
+#  session_token       :string           not null
+#  created_at          :datetime         not null
+#  updated_at          :datetime         not null
+#  default_notebook_id :integer          not null
 #
 
 class User < ApplicationRecord
     validates :email, :session_token, presence: true, uniqueness: true
     validates :password_digest, presence: true
     validates :password, length: { minimum: 6, allow_nil: true }
-    before_validation :ensure_session_token
+    before_validation :ensure_session_token, :ensure_default_notebook
+
     attr_reader :password
 
     has_many :notebooks,
         primary_key: :id,
         foreign_key: :user_id,
+        inverse_of: :user,
         class_name: :Notebook
 
     has_many :notes,
         through: :notebooks,
         source: :notes
+
+    belongs_to :default_notebook,
+        primary_key: :id,
+        foreign_key: :default_notebook_id,
+        inverse_of: :user,
+        class_name: :Notebook
+
+
+    def ensure_default_notebook
+        unless self.default_notebook
+            self.default_notebook.new(name: 'First Notebook!')
+        end
+    end
 
     def self.find_by_credentials(email, password)
         user = User.find_by(email: email)

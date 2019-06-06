@@ -17,7 +17,6 @@ book6 = Notebook.create!(name: 'My deepest darkest secrets', user_id: user1.id)
 book7 = Notebook.create!(name: 'Everything Larry Bird', user_id: user1.id)
 book8 = Notebook.create!(name: 'The Diaries of Sigourney Weaver', user_id: user1.id)
 
-user1.default_notebook = book1.id
 
 note1 = Note.create!(title: 'Just kidding', body: "I wouldn't wish that on my worst enemy", notebook_id: book1.id)
 note2 = Note.create!(title: 'HAHAHAHAH', body: "Ok maybe on certain people.", notebook_id: book1.id)

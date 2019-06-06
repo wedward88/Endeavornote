@@ -4,6 +4,7 @@ import ReactQuill from 'react-quill';
 
 class NoteEditor extends React.Component {
     constructor(props){
+        debugger
         super(props);
         this.state = { 
             title: '',

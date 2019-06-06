@@ -33,7 +33,7 @@ class Api::NotebooksController < ApplicationController
         @user = User.find(params[:user_id])
         @notebook = Notebook.find(params[:id])
 
-        if @user.id == @notebook.user_id
+        if @user.id == @notebook.user_id && @notebook.id != @user.default_notebook_id
             if @notebook.destroy
                 render json: @notebook
             else
