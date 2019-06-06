@@ -14,15 +14,17 @@ class Api::NotesController < ApplicationController
 
     def create
         @note = Note.new(note_params)
-        if @notebook.save
-            render json: @notebook
+        
+        if @note.save
+            render json: @note
         else
-            render json: @notebook.errors.full_messages, status: 422
+            render json: @note.errors.full_messages, status: 422
         end
     end
 
     def update
         @note = Note.find(params[:id])
+        
         if @note.update(note_params)
             render json: @note
         else
@@ -49,6 +51,6 @@ class Api::NotesController < ApplicationController
     private
 
     def note_params
-        params.require(:note).permit(:title, :body, :user_id, :notebook_id)
+        params.require(:note).permit(:title, :user_id, :notebook_id, :body )
     end
 end

@@ -2,15 +2,19 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import NotebookIndexContainer from './notebooks/NotebookIndexContainer';
 import NotesIndexContainer from './notes/NotesIndexContainer';
-import NoteEditorContainer from './notes/NoteEditor';
+import NoteEditorContainer from './notes/NoteEditorContainer';
 import { ProtectRoute } from '../../util/route_util';
+
 
 
 class MainContent extends React.Component {
     constructor(props) {
         super(props);
-        this.state = { active: false }
+        
+        this.state = { active: false, url: this.props.location.pathname  }
+
         this.toggleClass = this.toggleClass.bind(this);
+        this.handleNewNote = this.handleNewNote.bind(this);
     }
 
     toggleClass (e) {
@@ -18,10 +22,18 @@ class MainContent extends React.Component {
     }
 
 
+    componentDidUpdate (prevState) {
+        if (prevState.location.pathname != this.props.location.pathname){
+            this.setState({ 
+                url: this.props.location.pathname
+            })
+        }
+    }
 
-    // handleLogout(e) {
-
-    // }
+    handleNewNote() {
+        
+        this.props.clearCurrentNote();
+    }
 
     render () {
 
@@ -41,10 +53,10 @@ class MainContent extends React.Component {
                         <li onClick={this.props.logout}><p>Sign Out {this.props.user.email}</p></li>
                     </ul>
                     </div>
-                    <div className="new-note-button"><i className="fas fa-plus-circle fa-2x"></i>New Note</div>
+                    <div className="new-note-button"><Link to={this.state.url === "/main/notebooks_index" ? '/main/notes/' : this.state.url} onClick={this.handleNewNote}><i className="fas fa-plus-circle fa-2x"></i>New Note</Link></div>
                     <ul className="main-left-links">
-                        <li><Link to="/main/notes">All Notes</Link></li>
-                        <li><Link to="/main/notebooks">Notebooks</Link></li>
+                        <li><Link onClick={this.props.clearCurrentNote} to="/main/notes">All Notes</Link></li>
+                        <li><Link onClick={this.props.clearCurrentNote} to="/main/notebooks_index">Notebooks</Link></li>
                         <li>Tags</li>
                         <li>Trash</li>
                     </ul>
@@ -52,13 +64,15 @@ class MainContent extends React.Component {
 
                     {/* <NotebookIndex user={this.props.user} retreiveNotebooks={this.props.retreiveNotebooks} notebooks={this.props.notebooks}/> */}
                
-                <ProtectRoute path='/main/notebooks' component={NotebookIndexContainer} />
+                <ProtectRoute path='/main/notebooks_index' component={NotebookIndexContainer} />
+                <ProtectRoute path='/main/notebooks/:notebookId' component={NotesIndexContainer} />
+                <ProtectRoute path='/main/notebooks/:notebookId' component={NoteEditorContainer} />
                 <ProtectRoute path='/main/notes' component={NotesIndexContainer} />
-                <ProtectRoute path='/main/notes/editor' component={NoteEditorContainer} />
+                <ProtectRoute path='/main/notes' component={NoteEditorContainer} />
 
-                <section className="main-third-panel">
 
-                </section>
+
+            
             </div>
         )
     }

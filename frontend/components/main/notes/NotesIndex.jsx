@@ -1,4 +1,6 @@
 import React from 'react';
+import formatDate from '../../../util/date_util';
+import { Link } from 'react-router-dom';
 
 class NotesIndex extends React.Component {
     constructor(props){
@@ -12,21 +14,25 @@ class NotesIndex extends React.Component {
         });   
     }
 
+
     render () {
         
         let allNotes;
-        let numNotes;  
+        let numNotes = 0;
         if (this.state.mounted) {
             allNotes = this.props.notes.map((note)=>{
+                if (note) {
+                    numNotes += 1;
                 return( 
-                    <li key={note.id}>
+                    <li key={note.id} onClick={()=> this.props.currentNote(note)}>
                         <h2>{note.title}</h2>
-                        <p>{note.body.substring(0,50)} ...</p>
-                        <div>{note.updated_at}</div>
+                        <p>{note.body} ...</p>
+                        <div>{formatDate(note.updated_at)}</div>
                     </li>
                 )
+                }
             })
-            numNotes = allNotes.length;
+            
         }
         
         return (

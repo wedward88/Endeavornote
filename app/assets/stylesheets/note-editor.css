@@ -1,0 +1,33 @@
+.quill-container {
+    width: 100%;
+}
+
+.quill {
+    display: flex;
+    width: 100%;
+    height: 100%;
+    flex-direction: column;
+}
+
+.quill :nth-child(1) { order: 1 }
+.quill :nth-child(2) { order: 3 }
+.quill :nth-child(3) { order: 2 }
+.quill :nth-child(4) { order: 4 }
+
+
+#quill-body {
+    max-height: 100%;
+    border:none;
+    padding-left: 30px;
+}
+
+#note-title-field {
+    height: 63px;
+    font-size: 34px;
+    border: none;
+    padding-left: 42px;
+}
+
+#note-title-field:focus {
+    outline: none;
+}

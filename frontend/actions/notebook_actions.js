@@ -3,6 +3,7 @@ import * as NotebookApiUtil from '../util/notebook_api_util';
 export const RECEIVE_NOTEBOOKS = 'RECEIVE_NOTEBOOKS';
 export const RECEIVE_ONE_NOTEBOOK = 'RECEIVE_ONE_NOTEBOOK';
 export const DELETE_NOTEBOOK = 'DELETE_NOTEBOOK';
+export const CURRENT_NOTEBOOK = 'CURRENT_NOTEBOOK';
 
 
 export const receiveNotebooks = (notebooks) => {
@@ -22,6 +23,13 @@ export const receiveNotebook = (notebook) => {
 export const removeNotebook = (notebook) => {
     return {
         type: DELETE_NOTEBOOK,
+        notebook
+    }
+}
+
+export const currentNotebook = (notebook) => {
+    return {
+        type: CURRENT_NOTEBOOK,
         notebook
     }
 }

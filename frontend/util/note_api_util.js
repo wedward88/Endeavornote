@@ -18,6 +18,7 @@ export const editNote = (note) => {
 };
 
 export const createNote = (note) => {
+    
     return $.ajax({
         method: 'POST',
         url: 'api/notes',

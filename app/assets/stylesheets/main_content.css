@@ -3,6 +3,7 @@
     height: 100%;
     display: flex;
     font-family: 'Roboto', sans-serif;
+    overflow: scroll;
 }
 .main-left-menu {
     background-color: #1a1a1a;

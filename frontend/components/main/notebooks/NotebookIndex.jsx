@@ -1,6 +1,7 @@
 import React from 'react';
 import NotebookFormContainer from './NotebookFormContainer';
 import formatDate from '../../../util/date_util';
+import { Link } from 'react-router-dom';
 
 class NotebookIndex extends React.Component {
 
@@ -19,6 +20,7 @@ class NotebookIndex extends React.Component {
         this.removeClass = this.removeClass.bind(this);
         this.closeModal = this.closeModal.bind(this);
         this.toggleRow = this.toggleRow.bind(this);
+        this.handleNotebookClick = this.handleNotebookClick.bind(this);
     }
     
     componentDidMount() {
@@ -67,6 +69,11 @@ class NotebookIndex extends React.Component {
         }
     }
 
+    handleNotebookClick(notebook) {
+        this.props.currentNotebook(notebook);
+        
+    }
+
     render () {
         
         let tableData;
@@ -96,8 +103,9 @@ class NotebookIndex extends React.Component {
                 return (
                         <div className="notebook-table-row-container" key={notebook.id}>
                             <div className="notebook-table-row">
-                            <div onClick={() => this.toggleRow(notebook.id)} className="notebook-table-data notebook-title">
-                                <h3>{notebook.name}</h3>
+                            <div className="notebook-table-data notebook-title">
+                                <div onClick={() => this.toggleRow(notebook.id)}>&#x25B6; &nbsp; </div>
+                                <h3><Link to={`/main/notebooks/${notebook.id}`} onClick={() => this.handleNotebookClick(notebook)}>{notebook.name}</Link></h3>
                                 <p className="noteCount">&nbsp;({noteCount})</p>
                                 </div>
                                 <div className="notebook-table-data">{this.props.user.email}</div>

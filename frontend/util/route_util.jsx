@@ -8,13 +8,13 @@ const Auth = ({ component: Component, path, loggedIn, exact }) => {
         !loggedIn ? (
             <Component {...props} />
         ) : (
-                <Redirect to="/main/notebooks" />
+                <Redirect to="/main/notebooks_index" />
             )
     )} />
 };
 
 const Protect = ({ component: Component, path, loggedIn, exact }) => {
-    // debugger
+    
     return <Route path={path} exact={exact} render={(props) => (
         loggedIn ? (
             <Component {...props} />
