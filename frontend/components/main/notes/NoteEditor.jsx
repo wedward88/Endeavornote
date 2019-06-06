@@ -4,7 +4,7 @@ import ReactQuill from 'react-quill';
 
 class NoteEditor extends React.Component {
     constructor(props){
-        debugger
+        
         super(props);
         this.state = { 
             title: '',
@@ -76,14 +76,14 @@ class NoteEditor extends React.Component {
     }
 
     handleNoteSave () {
-       
+        const notebook_id = this.props.match.params.notebookId || this.props.defaultNotebookId;
 
         if (this.state.newNote) {
-            debugger  /////////////////// IN HERE, THIS.PROPS.DEFAULT_NOTEBOOK IS UNDEFINED FOR SOME REASON ///////////////////////////
-            this.props.createNote({ title: this.state.title, body: this.state.body, notebook_id: this.props.default_notebook })
+              /////////////////// IN HERE, THIS.PROPS.DEFAULT_NOTEBOOK IS UNDEFINED FOR SOME REASON ///////////////////////////
+            this.props.createNote({ title: this.state.title, body: this.state.body, notebook_id })
         } else  {
-            debugger
-            this.props.editNote({ title: this.state.title, body: this.state.body, id: this.props.currentNote.id, notebook_id: this.props.match.params.notebookId })
+            
+            this.props.editNote({ title: this.state.title, body: this.state.body, id: this.props.currentNote.id, notebook_id })
         }
 
     }

@@ -11,10 +11,10 @@ class MainContent extends React.Component {
     constructor(props) {
         super(props);
         
+        
         this.state = { active: false, url: this.props.location.pathname  }
 
         this.toggleClass = this.toggleClass.bind(this);
-        this.handleNewNote = this.handleNewNote.bind(this);
     }
 
     toggleClass (e) {
@@ -22,7 +22,9 @@ class MainContent extends React.Component {
     }
 
 
+
     componentDidUpdate (prevState) {
+
         if (prevState.location.pathname != this.props.location.pathname){
             this.setState({ 
                 url: this.props.location.pathname
@@ -30,14 +32,11 @@ class MainContent extends React.Component {
         }
     }
 
-    handleNewNote() {
-        
-        this.props.clearCurrentNote();
-    }
+    
 
     render () {
-
-
+        
+        // debugger //YOURE IN MAIN CONTENT
         return (
             <div className="main-content-container">
                 <section className="main-left-menu">
@@ -53,10 +52,10 @@ class MainContent extends React.Component {
                         <li onClick={this.props.logout}><p>Sign Out {this.props.user.email}</p></li>
                     </ul>
                     </div>
-                    <div className="new-note-button"><Link to={this.state.url === "/main/notebooks_index" ? '/main/notes/' : this.state.url} onClick={this.handleNewNote}><i className="fas fa-plus-circle fa-2x"></i>New Note</Link></div>
+                    <div className="new-note-button"><Link to={this.props.match.params.notebookId ? `/main/notebooks/${this.props.match.params.notebookId}` : `/main/notes`}><i className="fas fa-plus-circle fa-2x"></i>New Note</Link></div>
                     <ul className="main-left-links">
-                        <li><Link onClick={this.props.clearCurrentNote} to="/main/notes">All Notes</Link></li>
-                        <li><Link onClick={this.props.clearCurrentNote} to="/main/notebooks_index">Notebooks</Link></li>
+                        <li><Link to="/main/notes/all">All Notes</Link></li>
+                        <li><Link to="/main/notebooks_index">Notebooks</Link></li>
                         <li>Tags</li>
                         <li>Trash</li>
                     </ul>
@@ -64,11 +63,20 @@ class MainContent extends React.Component {
 
                     {/* <NotebookIndex user={this.props.user} retreiveNotebooks={this.props.retreiveNotebooks} notebooks={this.props.notebooks}/> */}
                
-                <ProtectRoute path='/main/notebooks_index' component={NotebookIndexContainer} />
+                <ProtectRoute path='/main/notebooks_index/' component={NotebookIndexContainer} />
                 <ProtectRoute path='/main/notebooks/:notebookId' component={NotesIndexContainer} />
-                <ProtectRoute path='/main/notebooks/:notebookId' component={NoteEditorContainer} />
-                <ProtectRoute path='/main/notes' component={NotesIndexContainer} />
-                <ProtectRoute path='/main/notes' component={NoteEditorContainer} />
+                <ProtectRoute exact path='/main/notebooks/:notebookId' component={NoteEditorContainer} />
+
+                <ProtectRoute exact path='/main/notebooks/:notebookId/:noteId' component={NoteEditorContainer} />
+
+
+                <ProtectRoute exact path='/main/notes/all' component={NotesIndexContainer} />
+                <ProtectRoute exact path='/main/notes/all' component={NoteEditorContainer} />
+
+
+                <ProtectRoute exact path='/main/notes/all/:notebookId/:noteId' component={NotesIndexContainer} />
+                <ProtectRoute exact path='/main/notes/all/:notebookId/:noteId' component={NoteEditorContainer} />
+                <ProtectRoute exact path='/main/notes' component={NoteEditorContainer} />
 
 
 

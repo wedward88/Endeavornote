@@ -15,7 +15,6 @@ class Notebook < ApplicationRecord
     belongs_to :user,
         primary_key: :id,
         foreign_key: :user_id,
-        inverse_of: :default_notebook,
         class_name: :User
 
     has_many :notes,

@@ -39,12 +39,17 @@
     box-sizing: border-box;
 }
 
+.notes-index-list-container ul li a {
+    text-decoration: none;
+}
+
 .notes-index-list-container ul li:hover {
     background-color: #f2f2f2;
 }
 
 .notes-index-container ul li h2 {
     margin-bottom: 2px;
+    color: #4d4d4d;
 }
 .notes-index-container ul li p {
     color: #4d4d4d;

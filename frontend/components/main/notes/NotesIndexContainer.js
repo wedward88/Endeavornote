@@ -2,10 +2,13 @@ import { connect } from 'react-redux';
 import NotesIndex from './NotesIndex';
 import { retrieveNotes, currentNote} from '../../../actions/note_actions';
 
-const msp = (state) => {
+const msp = (state, ownProps) => {
+
     let notes;
-    if (state.session.currentNotebook) {
-        notes = Object.values(state.entities.notes).map(note=> note.notebook_id === state.session.currentNotebook.id ? note : null)
+    if (ownProps.match.params.notebookId) {
+        notes = Object.values(state.entities.notes).map(note => {
+            return note.notebook_id == ownProps.match.params.notebookId ? note : null
+        })
     } else {
         notes = Object.values(state.entities.notes)
     }
@@ -14,7 +17,7 @@ const msp = (state) => {
     return {
         notes: notes,
         user: state.entities.user[state.session.currentUserId],
-        currentNotebook: state.session.currentNotebook
+        currentNotebook: state.entities.notebooks[ownProps.match.params.notebookId]
     };
 };
 

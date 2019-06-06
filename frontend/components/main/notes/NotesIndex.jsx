@@ -16,24 +16,44 @@ class NotesIndex extends React.Component {
 
 
     render () {
-        
+        // debugger
         let allNotes;
+        let linkToPath;
         let numNotes = 0;
+        // debugger
+
         if (this.state.mounted) {
             allNotes = this.props.notes.map((note)=>{
+                debugger
                 if (note) {
                     numNotes += 1;
+
+                    if (this.props.match.params.notebookId && this.props.match.params.noteId) {
+                        // debugger
+                        linkToPath = `/main/notes/all/${note.notebook_id}/${note.id}`
+                    } else if (this.props.match.params.notebookId) {
+                        linkToPath = `${this.props.match.url}` + `/${note.id}`
+                    } else {
+                        linkToPath = `${this.props.match.url}` + `/${note.notebook_id}` + `/${note.id}`
+                    }
+
+
+
                 return( 
-                    <li key={note.id} onClick={()=> this.props.currentNote(note)}>
-                        <h2>{note.title}</h2>
-                        <p>{note.body} ...</p>
-                        <div>{formatDate(note.updated_at)}</div>
+                    <li key={note.id}>
+                        <Link to={linkToPath}>
+                            <h2>{note.title}</h2>
+                            <p>{note.body.replace(/(<([^>]+)>)/ig, "")} ...</p>
+                            <div>{formatDate(note.updated_at)}</div>
+                        </Link>
                     </li>
                 )
                 }
             })
             
         }
+        
+
         
         return (
             <div className="notes-index-container">

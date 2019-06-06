@@ -87,12 +87,14 @@
     border-top: 1px solid #ededed;
 }
 
-.new-note-button {
+.new-note-button a {
     display: flex;
     align-items: center;
     margin: 12px 0;
     height: 42px;
     padding: 0 15px;
+    text-decoration: none;
+    color: #e6e6e6;
 }
 
 .new-note-button i {

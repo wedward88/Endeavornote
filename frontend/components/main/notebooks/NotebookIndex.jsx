@@ -20,7 +20,6 @@ class NotebookIndex extends React.Component {
         this.removeClass = this.removeClass.bind(this);
         this.closeModal = this.closeModal.bind(this);
         this.toggleRow = this.toggleRow.bind(this);
-        this.handleNotebookClick = this.handleNotebookClick.bind(this);
     }
     
     componentDidMount() {
@@ -69,10 +68,7 @@ class NotebookIndex extends React.Component {
         }
     }
 
-    handleNotebookClick(notebook) {
-        this.props.currentNotebook(notebook);
-        
-    }
+    
 
     render () {
         
@@ -84,9 +80,13 @@ class NotebookIndex extends React.Component {
             let notesArr = this.props.notes;
   
             tableData = this.props.notebooks.map((notebook)=> {
+                let firstNoteId = null;
                 let noteCount = 0
-                let notebookNotes = notesArr.map((note)=>{
+                let notebookNotes = notesArr.map((note, idx)=>{
                     if (note.notebook_id === notebook.id){
+                        if (firstNoteId === null) {
+                            firstNoteId = note.id
+                        }
                         noteCount += 1;
                         return (
                             <div className={this.state.rowOpen === notebook.id ? "notebook-notes-row notebook-table-row" : "notebook-notes-row-hide"} key={note.id} >
@@ -105,7 +105,7 @@ class NotebookIndex extends React.Component {
                             <div className="notebook-table-row">
                             <div className="notebook-table-data notebook-title">
                                 <div onClick={() => this.toggleRow(notebook.id)}>&#x25B6; &nbsp; </div>
-                                <h3><Link to={`/main/notebooks/${notebook.id}`} onClick={() => this.handleNotebookClick(notebook)}>{notebook.name}</Link></h3>
+                                <h3><Link to={`/main/notebooks/${notebook.id}/${firstNoteId}`} >{notebook.name}</Link></h3>
                                 <p className="noteCount">&nbsp;({noteCount})</p>
                                 </div>
                                 <div className="notebook-table-data">{this.props.user.email}</div>

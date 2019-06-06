@@ -30,15 +30,13 @@ class User < ApplicationRecord
         source: :notes
 
     belongs_to :default_notebook,
-        primary_key: :id,
         foreign_key: :default_notebook_id,
-        inverse_of: :user,
         class_name: :Notebook
 
 
     def ensure_default_notebook
         unless self.default_notebook
-            self.default_notebook.new(name: 'First Notebook!')
+            self.default_notebook = self.notebooks.new(name: 'First Notebook!')
         end
     end
 

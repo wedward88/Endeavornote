@@ -1,7 +1,8 @@
 import { connect } from 'react-redux';
 import { logout } from '../../actions/session_actions';
 import MainContent from './MainContent';
-import { clearCurrentNote } from '../../actions/note_actions';
+import { clearCurrentNote, retrieveNotes } from '../../actions/note_actions';
+import { retrieveNotebooks } from '../../actions/notebook_actions';
 
 const msp = (state) => {
     return {
@@ -12,8 +13,9 @@ const msp = (state) => {
 const mdp = (dispatch) => {
     return {
         logout: ()=> dispatch(logout()),
-        clearCurrentNote: ()=> dispatch(clearCurrentNote())
-
+        clearCurrentNote: ()=> dispatch(clearCurrentNote()),
+        retrieveNotebooks: (user)=> dispatch(retrieveNotebooks(user)),
+        retrieveNotes: (user)=> dispatch(retrieveNotes(user))
     }
 }
 

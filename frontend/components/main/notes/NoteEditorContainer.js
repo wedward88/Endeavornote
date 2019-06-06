@@ -3,14 +3,21 @@ import NoteEditor from './NoteEditor';
 import { createNote, editNote } from '../../../actions/note_actions';
 
 
-const msp = (state) => {
+const msp = (state, ownProps) => {
     
-    let user = Object.values(state.entities.user)[0]
-    debugger ///LEAVING OFF HERE, DEFAULT NOTEBOOK ISNT MAPPING TO NOTEEDITOR PROPS FOR SOME REASON
+    const user = state.entities.user[state.session.currentUserId];
+    // const defaultNotebook = state.entities.notebooks[user.default_notebook_id];
+    let currentNotebookId;
+    if (ownProps.match.params.noteId) {
+        currentNotebookId = ownProps.match.params.notebookId || user.default_notebook_id;
+    }
+    const currentNotebook = state.entities.notebooks[currentNotebookId] || { note_ids: [] };
+    const currentNoteId = ownProps.match.params.noteId || currentNotebook.note_ids[0]
+    // debugger
     return {
-        currentNote: state.session.currentNote,
-        currentNotebook: state.session.currentNotebook,
-        defaultNotebook: user.defaultNotebook,
+        currentNote: state.entities.notes[currentNoteId],
+        currentNotebook: state.entities.notebooks[currentNotebookId],
+        defaultNotebookId: user.default_notebook_id,
         user: user
     }
 }
