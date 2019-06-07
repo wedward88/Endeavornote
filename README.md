@@ -1,9 +1,9 @@
 # Welcome to Endeavornote!
 
-Endeavornote is a clone of the note taking application Evernote (https://evernote.com/). It is used
+Endeavornote is a clone of the note taking application [Evernote](http://evernote.com/). It is used
 to take notes in Rich Text Format, and organize them into notebooks.
 
-Please visit the live site at https://endeavornote.herokuapp.com/#/.
+Please visit the live site [HERE](https://endeavornote.herokuapp.com/#/).
 
 Endeavornote was built using the following technologies:
 * Ruby 2.5.1
@@ -24,7 +24,7 @@ and Notes were retrieved before updating the state of a particular component.
 componentDidMount() {
         this.props.retrieveNotebooks(this.props.user).then(
             this.props.retrieveNotes(this.props.user).then(
-                this.setState({ mounted: true })
+                this.setState({ mounted: true });
             ));   
     }
 ```
