@@ -33,7 +33,7 @@ and Notes were retrieved before updating the state of a particular component.
 componentDidMount() {
         this.props.retrieveNotebooks(this.props.user).then(
             this.props.retrieveNotes(this.props.user).then(
-                this.setState({ mounted: true });
+                this.setState({ mounted: true })
             ));   
     }
 ```
