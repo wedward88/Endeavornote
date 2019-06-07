@@ -25,7 +25,7 @@ class NotebookIndex extends React.Component {
     componentDidMount() {
         this.props.retrieveNotebooks(this.props.user).then(
             this.props.retrieveNotes(this.props.user).then(
-                this.setState({ mounted: true })
+                this.setState({ mounted: true });
             ));   
     }
 
