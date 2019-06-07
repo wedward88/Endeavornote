@@ -22,13 +22,14 @@ flow of data, and making sure that the necessary data was available during any g
 example, in the below code snippet, I utilized Promise.prototype.then() to ensure that both Notebooks
 and Note were retrieved before updating the state of a particular component.
 
-``componentDidMount() {
+```
+componentDidMount() {
         this.props.retrieveNotebooks(this.props.user).then(
             this.props.retrieveNotes(this.props.user).then(
                 this.setState({ mounted: true })
             ));   
     }
-``
+```
 
 Before implementing the code above, the state would be updated before each AJAX request has time to process.
 
