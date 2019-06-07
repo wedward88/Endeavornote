@@ -5,6 +5,11 @@ to take notes in Rich Text Format, and organize them into notebooks.
 
 Please visit Endeavornote's live site [HERE](https://endeavornote.herokuapp.com/#/).
 
+----
+![Imgur](https://i.imgur.com/rYCcQVl.png)
+![Imgur](https://i.imgur.com/01AirfZ.png)
+
+----
 Endeavornote was built using the following technologies:
 * Ruby 2.5.1
 * Rails 5.2.3
@@ -14,6 +19,8 @@ Endeavornote was built using the following technologies:
 * Webpack 4.32.2
 * Babel 7.4.5
 * React-Quill 1.3.3
+
+----
 
 One of the more difficult challenges I faced while building this application was generally managing the
 flow of data, and making sure that the necessary data was available during any given scenario. For
@@ -31,3 +38,4 @@ componentDidMount() {
 
 Before implementing the code above, the state would be updated before each AJAX request has time to process.
 
+----
