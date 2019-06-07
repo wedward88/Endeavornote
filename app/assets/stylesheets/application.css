@@ -13,3 +13,9 @@
  *= require_tree .
  *= require_self
  */
+
+
+ ::-webkit-scrollbar {
+     width: 0px;
+     background: transparent;
+ }
