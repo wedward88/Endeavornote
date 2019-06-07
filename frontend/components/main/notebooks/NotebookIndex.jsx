@@ -90,21 +90,23 @@ class NotebookIndex extends React.Component {
                         noteCount += 1;
                         return (
                             <div className={this.state.rowOpen === notebook.id ? "notebook-notes-row notebook-table-row" : "notebook-notes-row-hide"} key={note.id} >
-                                <div className="notebook-table-data notes-data notes-title">{note.title.length < 40 ? note.title : note.title.substring(0, 37) + "..."}</div>
+                                <div className="notebook-table-data notes-data notes-title"><Link to={`/main/notebooks/${notebook.id}/${note.id}`}>{note.title.length < 40 ? note.title : note.title.substring(0, 37) + "..."}</Link></div>
                                 <div className="notebook-table-data notes-data">{this.props.user.email}</div>
                                 <div className="notebook-table-data notes-data">{formatDate(note.updated_at)}</div>
-                                <div className="notebook-table-data notes-data"></div>
+                                <div className="notebook-table-data notes-data" onClick={()=>this.props.deleteNote(note)}><span>Delete</span></div>
                             </div>
                         ) 
                     }
                 })
                 
+                let rowOpenIcon = <i className="fas fa-caret-down "></i>
+                let rowClosedIcon = <i className="fas fa-caret-right "></i>
                 
                 return (
                         <div className="notebook-table-row-container" key={notebook.id}>
                             <div className="notebook-table-row">
                             <div className="notebook-table-data notebook-title">
-                                <div onClick={() => this.toggleRow(notebook.id)}>&#x25B6; &nbsp; </div>
+                                <div onClick={() => this.toggleRow(notebook.id)}>{this.state.rowOpen === notebook.id ? rowOpenIcon : rowClosedIcon } </div>
                                 <h3><Link to={`/main/notebooks/${notebook.id}/${firstNoteId}`} >{notebook.name}</Link></h3>
                                 <p className="noteCount">&nbsp;({noteCount})</p>
                                 </div>

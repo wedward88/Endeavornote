@@ -24,7 +24,7 @@ class NotesIndex extends React.Component {
 
         if (this.state.mounted) {
             allNotes = this.props.notes.map((note)=>{
-                debugger
+                // debugger
                 if (note) {
                     numNotes += 1;
 

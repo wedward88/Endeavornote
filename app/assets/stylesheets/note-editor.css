@@ -1,5 +1,10 @@
 .quill-container {
     width: 100%;
+    overflow: hidden;
+    border: none;
+    display: flex;
+    flex-direction: column;
+    padding-top: 20px;
 }
 
 .quill {
@@ -7,12 +12,12 @@
     width: 100%;
     height: 100%;
     flex-direction: column;
+    padding: 0px 28px;
 }
 
-.quill :nth-child(1) { order: 1 }
-.quill :nth-child(2) { order: 3 }
-.quill :nth-child(3) { order: 2 }
-.quill :nth-child(4) { order: 4 }
+.ql-toolbar, .ql-container {
+    border: none !important;
+}
 
 
 #quill-body {
@@ -26,8 +31,32 @@
     font-size: 34px;
     border: none;
     padding-left: 42px;
+    font-family: 'Roboto', sans-serif;
 }
 
 #note-title-field:focus {
     outline: none;
 }
+
+.ql-toolbar {
+    opacity: 0;
+    transition: .5s opacity;
+}
+
+.ql-toolbar-show {
+    opacity: 100;
+    transition: .5s opacity;
+}
+
+.ql-editor {
+    font-family: 'Roboto', sans-serif;
+}
+
+.ql-editor strong{
+     font-weight:bold;
+ }
+
+ .ql-editor emphasize {
+    font-style: italic;
+ }
+

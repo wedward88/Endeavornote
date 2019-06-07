@@ -98,11 +98,32 @@
 }
 
 .new-note-button i {
+    
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 25px;
+    height: 25px;
     border-radius: 50%;
-    background-color: white;
-    color: #00a82d;
-    margin-right: 8px;
+    background-color: #00a82d;
+    color: white;
+    margin-right: 10px;
+    transition: .25s width, .25s height;
 }
+
+.new-note-button span {
+    position: absolute;
+    left: 53px;
+    font-size: 14px;
+}
+
+.new-note-button i:hover {
+    width: 30px;
+    height: 30px;
+    transition: .25s width, .25s height;
+}
+
+
 .main-left-links li {
     text-decoration: none;
     height: 32px;
@@ -110,6 +131,7 @@
     align-items: center;
     padding: 0px 8px 0px 18px;
     color: #ccc;
+    font-size: 14px;
 }
 
 .main-left-links li:hover {

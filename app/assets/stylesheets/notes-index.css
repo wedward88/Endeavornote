@@ -1,4 +1,5 @@
 .notes-index-container {
+    max-width: 346px;
     min-width: 346px;
     display: flex;
     flex-direction: column;
@@ -11,7 +12,7 @@
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    height: 136px;
+    min-height: 136px;
     border-bottom: 1px solid #ededed;
     padding: 33px 18px 30px 25px;
    
@@ -29,7 +30,7 @@
     overflow: scroll;
 }
 
-.notes-index-list-container ul li {
+.notes-index-list-container ul li a {
     display: flex;
     flex-direction: column;
     justify-content: space-around;
@@ -47,18 +48,18 @@
     background-color: #f2f2f2;
 }
 
-.notes-index-container ul li h2 {
+.notes-index-container ul li a h2 {
     margin-bottom: 2px;
     color: #4d4d4d;
 }
-.notes-index-container ul li p {
+.notes-index-container ul li a p {
     color: #4d4d4d;
     font-size: 13px;
     font-weight: lighter;
     word-wrap: break-word;
 }
 
-.notes-index-container ul li div {
+.notes-index-container ul li a div {
     font-size: 13px;
     color: #a6a6a6;
 }

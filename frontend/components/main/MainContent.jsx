@@ -52,7 +52,7 @@ class MainContent extends React.Component {
                         <li onClick={this.props.logout}><p>Sign Out {this.props.user.email}</p></li>
                     </ul>
                     </div>
-                    <div className="new-note-button"><Link to={this.props.match.params.notebookId ? `/main/notebooks/${this.props.match.params.notebookId}` : `/main/notes`}><i className="fas fa-plus-circle fa-2x"></i>New Note</Link></div>
+                    <div className="new-note-button"><Link to={this.props.match.params.notebookId ? `/main/notebooks/${this.props.match.params.notebookId}` : `/main/notes`}><i className="fas fa-plus"></i><span>New Note</span></Link></div>
                     <ul className="main-left-links">
                         <li><Link to="/main/notes/all">All Notes</Link></li>
                         <li><Link to="/main/notebooks_index">Notebooks</Link></li>
