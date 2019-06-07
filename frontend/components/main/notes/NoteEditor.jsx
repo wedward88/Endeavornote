@@ -1,6 +1,7 @@
 import React from 'react';
 import ReactQuill from 'react-quill';
-import Editor from 'react-quill'
+import Editor from 'react-quill';
+import { Redirect } from 'react-router-dom';
 
 
 class NoteEditor extends React.Component {
@@ -11,7 +12,8 @@ class NoteEditor extends React.Component {
             title: '',
             body: '',
             notebook_id: null,
-            newNote: true
+            newNote: true,
+            redirect: null
         };
 
     
@@ -30,18 +32,21 @@ class NoteEditor extends React.Component {
         if (this.props.currentNote) {
             
             this.setState({
-                ['title']: this.props.currentNote.title,
-                ['body']: this.props.currentNote.body,
-                ['notebook_id']: this.props.currentNote.notebook_id,
-                ['newNote']: false
+                title: this.props.currentNote.title,
+                body: this.props.currentNote.body,
+                notebook_id: this.props.currentNote.notebook_id,
+                newNote: false
 
             })
         }
+
+        
         
         if (this.state.newNote) {
             this.setState({
-                ['title']: '',
-                ['body']: '',
+                title: '',
+                body: '',
+                newNote: true
             })
 
         }
@@ -51,22 +56,28 @@ class NoteEditor extends React.Component {
 
     componentDidUpdate (prevProps) {
 
+        if (this.state.redirect) {
+            this.setState({
+                redirect: null
+            });
+        }
+
         if (prevProps.currentNote && !this.props.currentNote){
             
             this.setState({
-                ['title']: '',
-                ['body']: '',
-                ['newNote']: true
+                title: '',
+                body: '',
+                newNote: true
             })
         }
         
         if (prevProps.currentNote != this.props.currentNote && this.props.currentNote != null) {
             
             this.setState({
-                ['title']: this.props.currentNote.title,
-                ['body']: this.props.currentNote.body,
-                ['notebook_id']: this.props.currentNote.notebook_id,
-                ['newNote']: false
+                title: this.props.currentNote.title,
+                body: this.props.currentNote.body,
+                notebook_id: this.props.currentNote.notebook_id,
+                newNote: false
 
             })
         }
@@ -87,10 +98,14 @@ class NoteEditor extends React.Component {
         const notebook_id = this.props.match.params.notebookId || this.props.defaultNotebookId;
 
         if (this.state.newNote) {
-            this.props.createNote({ title: this.state.title, body: this.state.body, notebook_id }).then(() => {
+            this.props.createNote({ title: this.state.title, body: this.state.body, notebook_id }).then((res) => {
+                // this.setState({
+                //     newNote: false
+                // });
                 this.setState({
-                    newNote: false
+                    redirect: res.note
                 });
+                
             });
             
         } else  {
@@ -128,6 +143,12 @@ class NoteEditor extends React.Component {
     // }
 
     render () {
+
+        if (this.state.redirect) {
+            
+            return <Redirect to={`/main/notebooks/${this.state.redirect.notebook_id}/${this.state.redirect.id}`} />
+        }
+
         let title;
         if (this.props.notebook) {
             title = this.props.notebook.title
