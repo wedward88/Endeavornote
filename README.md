@@ -10,7 +10,8 @@ Please visit Endeavornote's live site [HERE](https://endeavornote.herokuapp.com/
 ![Imgur](https://i.imgur.com/01AirfZ.png)
 
 ----
-Endeavornote was built using the following technologies:
+#### Endeavornote was built using the following technologies: ####
+
 * Ruby 2.5.1
 * Rails 5.2.3
 * React 16.8.6
@@ -21,6 +22,7 @@ Endeavornote was built using the following technologies:
 * React-Quill 1.3.3
 
 ----
+#### Challenges ####
 
 One of the more difficult challenges I faced while building this application was generally managing the
 flow of data, and making sure that the necessary data was available during any given scenario. For
@@ -35,7 +37,39 @@ componentDidMount() {
             ));   
     }
 ```
-
 Before implementing the code above, the state would be updated before each AJAX request has time to process.
 
+Additionally, learning to utilize a React component's state was really fun! The below code snippet shows how I used the component's state to keep track of modals, row open/collapse, form types, etc. :
+
+```
+class NotebookIndex extends React.Component {
+
+    constructor(props) {
+        super(props);
+        this.state = { 
+            mounted: false, 
+            modalOpen: false, 
+            active: 0,
+            rowOpen: 0, 
+            formType: "newNotebook", 
+            currentNotebook: null 
+        }
+
+        this.toggleModal = this.toggleModal.bind(this);
+        this.removeClass = this.removeClass.bind(this);
+        this.closeModal = this.closeModal.bind(this);
+        this.toggleRow = this.toggleRow.bind(this);
+    }
+}
+```
+
 ----
+#### Future Features ####
+
+* Tags
+  * allow users to categorize their notes into 'tag' categories
+* Searching
+  * allow users to search their notes, notebooks, and tags
+* Support for images
+  * allow for images within notes
+* Additional editor styles
