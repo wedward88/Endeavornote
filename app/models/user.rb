@@ -8,7 +8,7 @@
 #  session_token       :string           not null
 #  created_at          :datetime         not null
 #  updated_at          :datetime         not null
-#  default_notebook_id :integer          not null
+#  default_notebook_id :integer
 #
 
 class User < ApplicationRecord
@@ -24,6 +24,11 @@ class User < ApplicationRecord
         foreign_key: :user_id,
         inverse_of: :user,
         class_name: :Notebook
+
+    has_many :tags,
+        primary_key: :id,
+        foreign_key: :user_id,
+        class_name: :Tag
 
     has_many :notes,
         through: :notebooks,

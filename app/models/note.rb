@@ -17,9 +17,18 @@ class Note < ApplicationRecord
         primary_key: :id,
         foreign_key: :notebook_id,
         class_name: :Notebook
+
+    has_many :taggings,
+        primary_key: :id,
+        foreign_key: :note_id.
+        class_name: :Tagging
     
     has_one :user,
         through: :notebook,
         source: :user
+
+    has_many :tags,
+        through: :taggings,
+        source: :tag
 
 end
