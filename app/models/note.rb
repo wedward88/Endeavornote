@@ -20,7 +20,7 @@ class Note < ApplicationRecord
 
     has_many :taggings,
         primary_key: :id,
-        foreign_key: :note_id.
+        foreign_key: :note_id,
         class_name: :Tagging
     
     has_one :user,

@@ -13,7 +13,7 @@ class Tagging < ApplicationRecord
 
     belongs_to :note,
         primary_key: :id,
-        foreign_key: :note_id.
+        foreign_key: :note_id,
         class_name: :Note
 
     belongs_to :tag,
