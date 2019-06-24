@@ -4,11 +4,6 @@ Endeavornote is a clone of the note taking application [Evernote](http://evernot
 to take notes in Rich Text Format, and organize them into notebooks.
 
 Please visit Endeavornote's live site [HERE](https://endeavornote.herokuapp.com/#/).
-
-----
-![Imgur](https://i.imgur.com/rYCcQVl.png)
-![Imgur](https://i.imgur.com/01AirfZ.png)
-
 ----
 #### Endeavornote was built using the following technologies: ####
 
@@ -20,6 +15,12 @@ Please visit Endeavornote's live site [HERE](https://endeavornote.herokuapp.com/
 * Webpack 4.32.2
 * Babel 7.4.5
 * React-Quill 1.3.3
+
+
+----
+
+![Imgur](https://i.imgur.com/rYCcQVl.png)
+![Imgur](https://i.imgur.com/01AirfZ.png)
 
 ----
 #### Challenges ####
