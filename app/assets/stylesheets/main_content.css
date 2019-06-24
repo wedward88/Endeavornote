@@ -99,9 +99,8 @@
     color: #e6e6e6;
 }
 
-.new-note-button i {
-    
-    display: flex;
+.new-note {
+    display: flex !important;
     justify-content: center;
     align-items: center;
     width: 25px;
@@ -119,7 +118,7 @@
     font-size: 14px;
 }
 
-.new-note-button i:hover {
+.new-note-hover {
     width: 30px;
     height: 30px;
     transition: .25s width, .25s height;

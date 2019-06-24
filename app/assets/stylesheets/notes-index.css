@@ -57,6 +57,9 @@
     font-size: 13px;
     font-weight: lighter;
     word-wrap: break-word;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
 }
 
 .notes-index-container ul li a div {

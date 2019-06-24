@@ -11,17 +11,24 @@ class MainContent extends React.Component {
     constructor(props) {
         super(props);
         
-        
-        this.state = { active: false, url: this.props.location.pathname  }
+        this.state = { url: this.props.location.pathname  }
 
         this.toggleClass = this.toggleClass.bind(this);
     }
 
     toggleClass (e) {
-        this.setState({ active: !this.state.active });
+        let target = e.currentTarget.className
+        if (this.state[target]) {  
+            this.setState({ [target]: !this.state[target] });
+        } else {
+            this.setState({ [target]: true })
+        }
+
+        
+        // this.setState({ active: !this.state.active });
     }
 
-
+    
 
     componentDidUpdate (prevState) {
 
@@ -35,13 +42,12 @@ class MainContent extends React.Component {
     
 
     render () {
-        
         // debugger //YOURE IN MAIN CONTENT
         return (
             <div className="main-content-container">
                 <section className="main-left-menu">
                     <div tabIndex='2' onFocus={(e)=>this.toggleClass(e)} onBlur={(e)=>this.toggleClass(e)} className="user-dropdown">{this.props.user.email}
-                    <ul className={this.state.active ? "dropdown-shown" : "dropdown-hidden"}>
+                    <ul className={this.state['user-dropdown'] ? "dropdown-shown" : "dropdown-hidden"}>
                         <li>
                             <h3>Account</h3>
                             <h2>{this.props.user.email}</h2>
@@ -52,7 +58,7 @@ class MainContent extends React.Component {
                         <li onClick={this.props.logout}><p>Sign Out {this.props.user.email}</p></li>
                     </ul>
                     </div>
-                    <div className="new-note-button"><Link to={this.props.match.params.notebookId ? `/main/notebooks/${this.props.match.params.notebookId}` : `/main/notes`}><i className="fas fa-plus"></i><span>New Note</span></Link></div>
+                    <div className="new-note-button" onMouseEnter={(e) => this.toggleClass(e)} onMouseLeave={(e) => this.toggleClass(e)}><Link to={this.props.match.params.notebookId ? `/main/notebooks/${this.props.match.params.notebookId}` : `/main/notes`}><i className={this.state['new-note-button'] ? "fas fa-plus new-note new-note-hover" : "fas fa-plus new-note"}></i><span>New Note</span></Link></div>
                     <ul className="main-left-links">
                         <li><Link to="/main/notes/all">All Notes</Link></li>
                         <li><Link to="/main/notebooks_index">Notebooks</Link></li>
