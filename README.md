@@ -4,7 +4,9 @@ Endeavornote is a clone of the note taking application [Evernote](http://evernot
 to take notes in Rich Text Format, and organize them into notebooks.
 
 Please visit Endeavornote's live site [HERE](https://endeavornote.herokuapp.com/#/).
+
 ----
+
 #### Endeavornote was built using the following technologies: ####
 
 * Ruby 2.5.1
