@@ -130,17 +130,6 @@ class NoteEditor extends React.Component {
         // }, 3*1000);
     }
     
-    // handleMouseEnter () {
-    //     this.showToolbar();
-    //     // clearInterval(this.autoSaveInterval);
-    //     //remove interval
-    //     debugger
-    // }
-
-    // handleMouseLeave () {
-    //     this.hideToolbar();
-    //     this.autoSave();
-    // }
 
     render () {
 
@@ -153,6 +142,22 @@ class NoteEditor extends React.Component {
         if (this.props.notebook) {
             title = this.props.notebook.title
         }
+
+        let modules = {
+            toolbar: [
+                [{ 'header': [1, 2, 3, false] }],
+                ['bold', 'italic', 'underline', 'strike', 'blockquote'],
+                [{ 'list': 'ordered' }, { 'list': 'bullet' }, { 'indent': '-1' }, { 'indent': '+1' }],
+                ['link', 'image'],
+                ['clean']
+            ],
+        };
+        let formats = [
+            'header',
+            'bold', 'italic', 'underline', 'strike', 'blockquote',
+            'list', 'bullet', 'indent',
+            'link', 'image'
+        ];
         
         return (
             
@@ -171,8 +176,8 @@ class NoteEditor extends React.Component {
                 <ReactQuill 
                     value={this.state.body} 
                     onChange={this.handleQuillChange} 
-                    modules={Editor.modules}
-                    formats={Editor.formats}
+                    modules={modules}
+                    formats={formats}
                     className={'react-quill-element'}
                     onBlur={this.autoSave}
                     placeholder="Write something...anything!"

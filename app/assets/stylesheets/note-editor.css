@@ -20,11 +20,11 @@
 }
 
 
-#quill-body {
+/* #quill-body {
     max-height: 100%;
     border:none;
     padding-left: 30px;
-}
+} */
 
 #note-title-field {
     height: 63px;
@@ -50,9 +50,10 @@
 
 .ql-editor {
     font-family: 'Roboto', sans-serif;
+    padding-right: 60px !important;
 }
 
-.ql-editor strong{
+.ql-editor strong {
      font-weight:bold;
  }
 
