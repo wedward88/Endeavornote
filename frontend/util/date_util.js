@@ -10,7 +10,7 @@ const formatDate = (date) => {
 
     if (hourDifference < 24) {
         let timeDifference = (updatedDate.getHours() - 12) - (currentDate.getHours() - 12)
-        debugger
+        // debugger
         if (timeDifference < 1) {
             formattedDate = "less than an hour ago"
         } else {
