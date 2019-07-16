@@ -1,6 +1,5 @@
 import React from 'react';
 import ReactQuill from 'react-quill';
-import Editor from 'react-quill';
 import { Redirect } from 'react-router-dom';
 
 
@@ -23,7 +22,7 @@ class NoteEditor extends React.Component {
         this.handleNoteSave = this.handleNoteSave.bind(this);
         this.showToolbar = this.showToolbar.bind(this);
         this.hideToolbar = this.hideToolbar.bind(this);
-        this.autoSave = this.autoSave.bind(this);
+        this.handleMouseOut = this.handleMouseOut.bind(this);
     }
 
 
@@ -41,35 +40,36 @@ class NoteEditor extends React.Component {
         }
 
         
-        
         if (this.state.newNote) {
-            this.setState({
-                title: '',
-                body: '',
-                newNote: true
-            })
-
+            if (this.props.match.params.noteId === undefined) {
+                this.setState({
+                    title: '',
+                    body: '',
+                    newNote: true
+                })
+            }
         }
     }
 
     
 
     componentDidUpdate (prevProps) {
-
+            
         if (this.state.redirect) {
             this.setState({
-                redirect: null
+                redirect: null,
+                newNote: false
             });
         }
 
-        if (prevProps.currentNote && !this.props.currentNote){
-            
-            this.setState({
-                title: '',
-                body: '',
-                newNote: true
-            })
-        }
+        // if (prevProps.currentNote && !this.props.currentNote){
+        //     debugger
+        //     this.setState({
+        //         title: '',
+        //         body: '',
+        //         newNote: true
+        //     })
+        // }
         
         if (prevProps.currentNote != this.props.currentNote && this.props.currentNote != null) {
             
@@ -98,44 +98,39 @@ class NoteEditor extends React.Component {
         const notebook_id = this.props.match.params.notebookId || this.props.defaultNotebookId;
 
         if (this.state.newNote) {
-            this.props.createNote({ title: this.state.title, body: this.state.body, notebook_id }).then((res) => {
-                // this.setState({
-                //     newNote: false
-                // });
-                this.setState({
-                    redirect: res.note
+            if (this.state.title) {
+                this.props.createNote({ title: this.state.title, body: this.state.body, notebook_id }).then((res) => {
+                    this.setState({
+                        redirect: res.note
+                    }); 
                 });
-                
-            });
+            }
             
         } else  {
-            
             this.props.editNote({ title: this.state.title, body: this.state.body, id: this.props.currentNote.id, notebook_id })
         }
 
     }
 
     showToolbar () {
-        document.getElementsByClassName('ql-toolbar ql-snow')[0].classList.add('ql-toolbar-show')   
+        document.getElementsByClassName('ql-toolbar ql-snow')[0].classList.add('ql-toolbar-show');   
     }
 
     hideToolbar () {
-        document.getElementsByClassName('ql-toolbar ql-snow')[0].classList.remove('ql-toolbar-show')   
+        document.getElementsByClassName('ql-toolbar ql-snow')[0].classList.remove('ql-toolbar-show');
     }
 
-    autoSave () {
-        // setTimeout(() => {
-            this.handleNoteSave()
-            // });
-        // }, 3*1000);
+    handleMouseOut () {
+        this.handleNoteSave();   
     }
+
+    
     
 
     render () {
-
+        
         if (this.state.redirect) {
-            
-            return <Redirect to={`/main/notebooks/${this.state.redirect.notebook_id}/${this.state.redirect.id}`} />
+             return <Redirect to={`/main/notebooks/${this.state.redirect.notebook_id}/${this.state.redirect.id}`} />
         }
 
         let title;
@@ -161,7 +156,7 @@ class NoteEditor extends React.Component {
         
         return (
             
-            <div className="quill-container" onMouseLeave={this.hideToolbar} onMouseEnter={this.showToolbar} >
+            <div className="quill-container" onMouseLeave={this.handleMouseOut} onMouseEnter={this.showToolbar} >
                 <h1>{title}</h1>
                 <input
                     id="note-title-field"
@@ -179,7 +174,6 @@ class NoteEditor extends React.Component {
                     modules={modules}
                     formats={formats}
                     className={'react-quill-element'}
-                    onBlur={this.autoSave}
                     placeholder="Write something...anything!"
                     
                  />
