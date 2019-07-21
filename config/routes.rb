@@ -6,6 +6,7 @@ Rails.application.routes.draw do
     resources :users, only: [:create]
     resources :notebooks, only: [:create, :destroy, :show, :index, :update]
     resources :notes, only: [:create, :destroy, :show, :index, :update]
+    resources :tags, only: [:create, :destroy, :show, :index, :update]
     resource :sessions, only: [:create, :destroy]
 
     get 'sessions', to: 'sessions#check_email'
