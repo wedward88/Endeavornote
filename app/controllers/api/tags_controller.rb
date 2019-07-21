@@ -15,7 +15,8 @@ class Api::TagsController < ApplicationController
         @note = Note.find(params[:tag][:note_id])
         # @tag = @note.tags.new(name: params[:tag][:name], user_id: params[:tag][:user_id])
         # debugger
-        if @note.tags.create(name: params[:tag][:name], user_id: params[:tag][:user_id])
+        @tag = @note.tags.create(name: params[:tag][:name], user_id: params[:tag][:user_id])
+        if @tag
             render json: @tag
         else
             render json: @tag.errors.full_messages, status: 422

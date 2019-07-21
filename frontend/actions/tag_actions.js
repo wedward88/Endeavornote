@@ -13,7 +13,7 @@ export const receiveTags = (tags) => {
 
 export const receiveTag = (tag) => {
     return {
-        type: RECEIVE_TAGS,
+        type: RECEIVE_ONE_TAG,
         tag
     };
 };

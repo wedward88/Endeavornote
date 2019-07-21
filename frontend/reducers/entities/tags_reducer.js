@@ -5,8 +5,9 @@ const tagsReducer = (state = {}, action) => {
     Object.freeze(state);
 
     switch (action.type) {
-
+        
         case RECEIVE_TAGS:
+            
             const newTags = {};
             Object.values(action.tags).forEach((tag) => {
                 newTags[tag.id] = tag;

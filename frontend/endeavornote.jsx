@@ -4,8 +4,9 @@ import configureStore from './store/store';
 import Root from './components/root';
 
 //for Testing
+import { retrieveTags, editTag, createTag, deleteTag } from './actions/tag_actions';
 // import { signup, login, logout, checkEmail } from './actions/session_actions';
-import { retrieveNotebooks, createNotebook, deleteNotebook } from './actions/notebook_actions';
+// import { retrieveNotebooks, createNotebook, deleteNotebook } from './actions/notebook_actions';
 
 //end Testing
 
@@ -31,13 +32,19 @@ document.addEventListener('DOMContentLoaded', ()=> {
     //for Testing:
     window.getState = store.getState;
     window.dispatch = store.dispatch;
+
+    window.retrieveTags = retrieveTags;
+    window.createTag = createTag;
+    window.editTag = editTag;
+    window.deleteTag = deleteTag;
+    
     // window.login = login;
     // window.signup = signup;
     // window.logout = logout;
     // window.checkEmail = checkEmail;
-    window.retrieveNotebooks = retrieveNotebooks;
-    window.createNotebook = createNotebook;
-    window.deleteNotebook = deleteNotebook;
+    // window.retrieveNotebooks = retrieveNotebooks;
+    // window.createNotebook = createNotebook;
+    // window.deleteNotebook = deleteNotebook;
 
     // end Testing
 });
