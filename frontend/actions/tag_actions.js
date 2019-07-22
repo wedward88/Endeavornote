@@ -33,31 +33,31 @@ export const removeTag = (tag) => {
     };
 };
 
-export const retrieveTags = () => {
+export const retrieveTags = () => dispatch => {
     return TagApiUtil.fetchTags().then((tags)=>{
         return dispatch(receiveTags(tags));
     });
 };
 
-export const retrieveTaggings = () => {
+export const retrieveTaggings = () => dispatch => {
     return TagApiUtil.fetchTaggings().then((taggings) => {
         return dispatch(receiveTaggings(taggings));
     });
 };
 
-export const editTag = (tag) => {
+export const editTag = (tag) => dispatch => {
     return TagApiUtil.editTag(tag).then((tag)=> {
         return dispatch(receiveTag(tag));
     });
 };
 
-export const createTag = (tag) => {
+export const createTag = (tag) => dispatch => {
     return TagApiUtil.createTag(tag).then((tag) => {
         return dispatch(receiveTag(tag));
     });
 };
 
-export const deleteTag = (tag) => {
+export const deleteTag = (tag) => dispatch => {
     return TagApiUtil.deleteTag(tag).then((tag) => {
         return dispatch(removeTag(tag));
     });

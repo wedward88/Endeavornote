@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import NotebookIndexContainer from './notebooks/NotebookIndexContainer';
 import NotesIndexContainer from './notes/NotesIndexContainer';
 import NoteEditorContainer from './notes/NoteEditorContainer';
+import TagsIndexContainer from './tags/TagsIndexContainer';
 import { ProtectRoute } from '../../util/route_util';
 
 
@@ -62,7 +63,7 @@ class MainContent extends React.Component {
                     <ul className="main-left-links">
                         <li><Link to="/main/notes/all">All Notes</Link></li>
                         <li><Link to="/main/notebooks_index">Notebooks</Link></li>
-                        <li>Tags</li>
+                        <li><Link to="/main/tags">Tags</Link></li>
                         <li>Trash</li>
                     </ul>
                 </section>
@@ -75,6 +76,7 @@ class MainContent extends React.Component {
 
                 <ProtectRoute exact path='/main/notebooks/:notebookId/:noteId' component={NoteEditorContainer} />
 
+                <ProtectRoute exact path='/main/tags' component={TagsIndexContainer} />
 
                 <ProtectRoute exact path='/main/notes/all' component={NotesIndexContainer} />
                 <ProtectRoute exact path='/main/notes/all' component={NoteEditorContainer} />
