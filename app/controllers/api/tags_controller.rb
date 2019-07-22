@@ -34,9 +34,11 @@ class Api::TagsController < ApplicationController
     end
 
     def destroy
+        @note = Note.find(params[:tag][:note_id])
         @tag = Tag.find(params[:id])
         if @tag.user_id == current_user.id
-            if @tag.destroy
+            if @note.tags.destroy(@tag)
+                @tag.destroy
                 render json: @tag
             else
                 render json: @tag.errors.full_messages, status: 418

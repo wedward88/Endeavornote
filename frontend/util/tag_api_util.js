@@ -4,6 +4,12 @@ export const fetchTags = () => {
     });
 }
 
+export const fetchTaggings = () => {
+    return $.ajax({
+        url: 'api/taggings'
+    })
+}
+
 export const editTag = (tag) => {
     return $.ajax({
         method: 'PATCH',

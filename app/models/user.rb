@@ -29,6 +29,10 @@ class User < ApplicationRecord
         primary_key: :id,
         foreign_key: :user_id,
         class_name: :Tag
+    
+    has_many :taggings,
+        through: :tags,
+        source: :taggings
 
     has_many :notes,
         through: :notebooks,

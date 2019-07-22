@@ -4,7 +4,7 @@ import configureStore from './store/store';
 import Root from './components/root';
 
 //for Testing
-import { retrieveTags, editTag, createTag, deleteTag } from './actions/tag_actions';
+import { retrieveTags, editTag, createTag, deleteTag, retrieveTaggings } from './actions/tag_actions';
 // import { signup, login, logout, checkEmail } from './actions/session_actions';
 // import { retrieveNotebooks, createNotebook, deleteNotebook } from './actions/notebook_actions';
 
@@ -37,6 +37,7 @@ document.addEventListener('DOMContentLoaded', ()=> {
     window.createTag = createTag;
     window.editTag = editTag;
     window.deleteTag = deleteTag;
+    window.retrieveTaggings = retrieveTaggings;
     
     // window.login = login;
     // window.signup = signup;
