@@ -3,7 +3,6 @@ import TagsIndex from './TagsIndex';
 import { retrieveTags } from '../../../actions/tag_actions';
 
 const msp = (state) => {
-    debugger
     return {
         tags: Object.values(state.entities.tags)
     }

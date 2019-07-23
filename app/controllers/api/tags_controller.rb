@@ -13,9 +13,9 @@ class Api::TagsController < ApplicationController
     def create
         
         @note = Note.find(params[:tag][:note_id])
-        # @tag = @note.tags.new(name: params[:tag][:name], user_id: params[:tag][:user_id])
+        # @tag = @note.tags.new(name: params[:tag][:name] params[:tag])
         # debugger
-        @tag = @note.tags.create(name: params[:tag][:name], user_id: params[:tag][:user_id])
+        @tag = @note.tags.create(name: params[:tag][:name], user_id: current_user.id)
         if @tag
             render json: @tag
         else
@@ -36,7 +36,7 @@ class Api::TagsController < ApplicationController
     def destroy
         @note = Note.find(params[:tag][:note_id])
         @tag = Tag.find(params[:id])
-        if @tag.user_id == current_user.id
+        if @ta== current_user.id
             if @note.tags.destroy(@tag)
                 @tag.destroy
                 render json: @tag
@@ -51,7 +51,7 @@ class Api::TagsController < ApplicationController
     private
 
     def tag_params
-        params.require(:tag).permit(:name, :user_id, :note_id)
+        params.require(:tag).permit(:name, :note_id)
     end
 
 end
