@@ -13,11 +13,10 @@ class Api::TagsController < ApplicationController
     def create
         
         @note = Note.find(params[:tag][:note_id])
-        # @tag = @note.tags.new(name: params[:tag][:name] params[:tag])
-        # debugger
         @tag = @note.tags.create(name: params[:tag][:name], user_id: current_user.id)
-        if @tag
-            render json: @tag
+        
+        if @tag.id != nil
+            render json: {:tag => @tag, :tagging => @tag.taggings}
         else
             render json: @tag.errors.full_messages, status: 422
         end
@@ -45,7 +44,6 @@ class Api::TagsController < ApplicationController
                 render json: @tag.errors.full_messages, status: 418
             end
         else
-            debugger
             render json: ['This is not your tag to delete!'], status: 418
         end
     end

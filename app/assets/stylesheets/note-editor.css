@@ -1,3 +1,44 @@
+.note-editor-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 100%;
+}
+
+.note-editor-container .tag-form {
+    display: flex;
+    align-items: center;
+    height: 50px;
+    border-top: 1px solid #ededed;
+    padding: 10px;
+}
+
+.tag-form form {
+    display: flex;
+}
+
+.tag-form-list {
+    display: flex;
+}
+
+.tag-form-list li {
+    margin: 0px 2px;
+    font-size: 12px;
+    font-weight: lighter;
+    border-radius: 20px;
+    color: #666666;
+    background-color: #F0F1F1;
+    padding: 12px;
+}
+
+.tag-form input {
+    border: none;
+}
+.tag-form input:focus {
+    outline: none;
+    
+}
+
 .quill-container {
     width: 100%;
     overflow: hidden;
@@ -19,12 +60,6 @@
     border: none !important;
 }
 
-
-/* #quill-body {
-    max-height: 100%;
-    border:none;
-    padding-left: 30px;
-} */
 
 #note-title-field {
     height: 63px;

@@ -1,6 +1,7 @@
 import React from 'react';
 import ReactQuill from 'react-quill';
 import { Redirect } from 'react-router-dom';
+import TagForm from '../tags/TagFormContainer';
 
 
 class NoteEditor extends React.Component {
@@ -62,14 +63,6 @@ class NoteEditor extends React.Component {
             });
         }
 
-        // if (prevProps.currentNote && !this.props.currentNote){
-        //     debugger
-        //     this.setState({
-        //         title: '',
-        //         body: '',
-        //         newNote: true
-        //     })
-        // }
         
         if (prevProps.currentNote != this.props.currentNote && this.props.currentNote != null) {
             
@@ -153,9 +146,13 @@ class NoteEditor extends React.Component {
             'list', 'bullet', 'indent',
             'link', 'image'
         ];
+
+        let tagForm;
+        
+        this.props.currentNote !== undefined ? tagForm = <TagForm note_id={this.props.currentNote.id} /> : tagForm = undefined;
         
         return (
-            
+           <div className="note-editor-container">
             <div className="quill-container" onMouseLeave={this.handleMouseOut} onMouseEnter={this.showToolbar} >
                 <h1>{title}</h1>
                 <input
@@ -178,6 +175,8 @@ class NoteEditor extends React.Component {
                     
                  />
             </div>
+                {tagForm}
+           </div> 
         )
     }
 

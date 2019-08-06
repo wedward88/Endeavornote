@@ -2,6 +2,7 @@ import React from 'react';
 import formatDate from '../../../util/date_util';
 import { Link } from 'react-router-dom';
 
+
 class NotesIndex extends React.Component {
     constructor(props){
         super(props);
@@ -10,7 +11,11 @@ class NotesIndex extends React.Component {
 
     componentDidMount () {
         this.props.retrieveNotes(this.props.user).then(()=> {
-            this.setState({ mounted: true });
+            this.props.retrieveTags().then(()=> {
+                this.props.retrieveTaggings().then(()=> {
+                    this.setState({ mounted: true });
+                })
+            });
         });   
     }
 

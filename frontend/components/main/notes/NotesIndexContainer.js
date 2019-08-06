@@ -1,6 +1,7 @@
 import { connect } from 'react-redux';
 import NotesIndex from './NotesIndex';
 import { retrieveNotes, currentNote} from '../../../actions/note_actions';
+import { retrieveTags, retrieveTaggings } from '../../../actions/tag_actions';
 
 const msp = (state, ownProps) => {
 
@@ -25,7 +26,9 @@ const mdp = (dispatch) => {
     
     return {
         retrieveNotes: (user) => dispatch(retrieveNotes(user)),
-        currentNote: (note) => dispatch(currentNote(note))
+        currentNote: (note) => dispatch(currentNote(note)),
+        retrieveTags: () => dispatch(retrieveTags()),
+        retrieveTaggings: () => dispatch(retrieveTaggings())
     };
 };
 

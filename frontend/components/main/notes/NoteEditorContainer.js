@@ -1,6 +1,7 @@
 import { connect } from 'react-redux';
 import NoteEditor from './NoteEditor';
 import { createNote, editNote } from '../../../actions/note_actions';
+import { createTag } from '../../../actions/tag_actions';
 
 
 const msp = (state, ownProps) => {
@@ -26,7 +27,7 @@ const mdp = (dispatch) => {
     
     return {
         createNote: (note) => dispatch(createNote(note)),
-        editNote: (note) => dispatch(editNote(note)),
+        editNote: (note) => dispatch(editNote(note))
     }
 }
 

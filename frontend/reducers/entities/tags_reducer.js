@@ -15,7 +15,7 @@ const tagsReducer = (state = {}, action) => {
             return merge({}, state, newTags);
 
         case RECEIVE_ONE_TAG:
-            return merge({}, state, { [action.tag.id]: action.tag });
+            return merge({}, state, { [action.tag.tag.id]: action.tag.tag });
 
         case DELETE_TAG:
             const newState = merge({}, state);
