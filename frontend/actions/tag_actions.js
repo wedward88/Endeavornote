@@ -26,6 +26,13 @@ export const receiveTag = (tag) => {
     };
 };
 
+export const removeTagging = (tag) => {
+    return {
+        type: REMOVE_ONE_TAGGING,
+        tag
+    }
+}
+
 export const removeTag = (tag) => {
     return {
         type: DELETE_TAG,
@@ -62,4 +69,10 @@ export const deleteTag = (tag) => dispatch => {
         return dispatch(removeTag(tag));
     });
 };
+
+export const deleteTagging = (tag) => dispatch => {
+    return TagApiUtil.deleteTagging(tag).then((tag) => {
+        return dispatch(removeTagging(tag));
+    })
+}
 

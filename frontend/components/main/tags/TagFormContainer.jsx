@@ -1,5 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import { createTag, deleteTagging } from '../../../actions/tag_actions';
 
 class TagForm extends React.Component {
     constructor(props){
@@ -40,7 +41,11 @@ class TagForm extends React.Component {
         if (this.props.tags){
             tags = this.props.tags.map((tag) => {
                 return (
-                    <li key={tag.id}>{tag.name + " ^"}</li>
+                    <li key={tag.id}>
+                        {tag.name}
+                        &nbsp;
+                        <i className="fas fa-angle-down"></i>
+                    </li>
                 )
             })
         }
@@ -80,7 +85,8 @@ const msp = (state, ownProps) => {
 
 const mdp = (dispatch) => {
     return  {
-        createTag: (tag) => dispatch(createTag(tag))
+        createTag: (tag) => dispatch(createTag(tag)),
+        deleteTagging: (tag) => dispatch(deleteTagging(tag))
     }
 }
 

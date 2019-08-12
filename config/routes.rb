@@ -11,5 +11,6 @@ Rails.application.routes.draw do
     resource :sessions, only: [:create, :destroy]
 
     get 'sessions', to: 'sessions#check_email'
+    delete 'taggings', to: 'tags#destroy_tagging'
   end
 end

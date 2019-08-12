@@ -39,3 +39,13 @@ export const deleteTag = (tag) => {
         }
     })
 }
+
+export const deleteTagging = (tag) => {
+    return $.ajax({
+        method: 'DELETE',
+        url: `api/taggings`,
+        data: {
+            tag
+        }
+    })
+}

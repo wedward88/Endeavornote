@@ -11,14 +11,24 @@ class Api::TagsController < ApplicationController
     end
 
     def create
-        
+
         @note = Note.find(params[:tag][:note_id])
-        @tag = @note.tags.create(name: params[:tag][:name], user_id: current_user.id)
-        
-        if @tag.id != nil
-            render json: {:tag => @tag, :tagging => @tag.taggings}
+        @tag = Tag.find_by(name: params[:tag][:name])
+
+        if @tag && @tag.user_id == current_user.id
+            @tagging = @tag.taggings.create(note_id: @note.id)
+            if @tagging
+                render json: {:tag => @tag, :tagging => @tagging}
+            else
+                render json: @tagging.errors.full_messages, status: 422
+            end
         else
-            render json: @tag.errors.full_messages, status: 422
+            @new_tag = @note.tags.create(name: params[:tag][:name], user_id: current_user.id)
+            if @new_tag.id != nil
+                render json: {:tag => @new_tag, :tagging => @new_tag.taggings}
+            else
+                render json: @new_tag.errors.full_messages, status: 422
+            end
         end
     end
 
@@ -29,6 +39,17 @@ class Api::TagsController < ApplicationController
             render json: @tag
         else
             render json: @tag.errors.full_messages, status: 422
+        end
+    end
+
+    def destroy_tagging
+        @note = Note.find(params[:tag][:note_id])
+        @tagging = @note.taggings.where(tag_id: params[:tag][:id])
+
+        if @tagging.delete
+            render json: @tagging
+        else
+            render json: @tagging.errors.full_messages, status: 422
         end
     end
 
