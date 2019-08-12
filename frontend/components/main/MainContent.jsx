@@ -48,6 +48,8 @@ class MainContent extends React.Component {
             <div className="main-content-container">
                 <section className="main-left-menu">
                     <div tabIndex='2' onFocus={(e)=>this.toggleClass(e)} onBlur={(e)=>this.toggleClass(e)} className="user-dropdown">{this.props.user.email}
+                    &nbsp;
+                    <i class="fas fa-angle-down"></i>
                     <ul className={this.state['user-dropdown'] ? "dropdown-shown" : "dropdown-hidden"}>
                         <li>
                             <h3>Account</h3>

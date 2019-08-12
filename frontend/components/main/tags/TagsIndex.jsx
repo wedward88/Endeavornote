@@ -19,10 +19,10 @@ class TagsIndex extends React.Component {
             
             tags.forEach((tag) => {
                 if (!tagHeaders.includes(tag.name[0]))
-                tagHeaders.push(tag.name[0]);
+                tagHeaders.push(tag.name[0].toUpperCase());
             });
             tagItems = tagHeaders.sort().map((tagLetter, idx) => {
-                let innerTagList = tags.map((tag) => tag.name[0] === tagLetter ? <li key={tag.id}>{tag.name}</li> : null)
+                let innerTagList = tags.map((tag) => tag.name[0].toUpperCase() === tagLetter.toUpperCase() ? <li key={tag.id}>{tag.name}</li> : null)
                 return (
                     <li key={idx}><h1>{tagLetter}</h1>
                         <ul>
