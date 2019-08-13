@@ -11,10 +11,13 @@ class Api::TagsController < ApplicationController
     end
 
     def create
-
+        # Use params note id to find the relevant note
         @note = Note.find(params[:tag][:note_id])
+        # Use params tag name to find tag (if it exists)
         @tag = Tag.find_by(name: params[:tag][:name])
 
+        # If tag exists already, create tagging
+        # Return tag and tagging, or errors
         if @tag && @tag.user_id == current_user.id
             @tagging = @tag.taggings.create(note_id: @note.id)
             if @tagging
@@ -22,10 +25,14 @@ class Api::TagsController < ApplicationController
             else
                 render json: @tagging.errors.full_messages, status: 422
             end
+        # If tag doesn't exist, create it with the tags association (which creates a tagging as well)
+        # Return tag and tagging, or errors
         else
+            
             @new_tag = @note.tags.create(name: params[:tag][:name], user_id: current_user.id)
             if @new_tag.id != nil
-                render json: {:tag => @new_tag, :tagging => @new_tag.taggings}
+                #returns the first element in the collection for tagging (it should always be one item)
+                render json: {:tag => @new_tag, :tagging => @new_tag.taggings[0]}
             else
                 render json: @new_tag.errors.full_messages, status: 422
             end
@@ -43,10 +50,13 @@ class Api::TagsController < ApplicationController
     end
 
     def destroy_tagging
-        @note = Note.find(params[:tag][:note_id])
-        @tagging = @note.taggings.where(tag_id: params[:tag][:id])
 
-        if @tagging.delete
+        @note = Note.find(params[:tag][:note_id])
+        # @note.taggings.where query returns a collection, so we specify the first element and save it to @tagging
+        
+        @tagging = @note.taggings.where(tag_id: params[:tag][:tag_id])[0]
+        
+        if @tagging.destroy    
             render json: @tagging
         else
             render json: @tagging.errors.full_messages, status: 422
@@ -54,9 +64,10 @@ class Api::TagsController < ApplicationController
     end
 
     def destroy
+        
         @note = Note.find(params[:tag][:note_id])
         @tag = Tag.find(params[:id])
-
+        
         if @tag.user_id == current_user.id
             if @note.taggings.where(tag_id: @tag.id).delete_all
                 @tag.destroy

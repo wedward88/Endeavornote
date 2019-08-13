@@ -4,6 +4,7 @@ export const RECEIVE_TAGS = 'RECEIVE_TAGS';
 export const RECEIVE_TAGGINGS = 'RECEIVE_TAGGINGS';
 export const RECEIVE_ONE_TAG = 'RECEIVE_ONE_TAG';
 export const DELETE_TAG = 'DELETE_TAG';
+export const REMOVE_ONE_TAGGING = 'REMOVE_ONE_TAGGING';
 
 export const receiveTags = (tags) => {
     return {

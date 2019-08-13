@@ -7,10 +7,13 @@ class TagForm extends React.Component {
         super(props);
         this.state = {
             name: "",
-            note_id: this.props.note_id
+            note_id: this.props.note_id,
+            openTag: null
         }
 
         this.handleSubmit = this.handleSubmit.bind(this);
+        this.openTagMenu = this.openTagMenu.bind(this);
+        this.handleTagRemove = this.handleTagRemove.bind(this);
     }
 
     componentDidUpdate(prevProps) {
@@ -30,10 +33,27 @@ class TagForm extends React.Component {
 
     handleSubmit(e) {
         e.preventDefault();
-        this.props.createTag(this.state);
+        this.props.createTag({ name: this.state.name, note_id: this.state.note_id });
         this.setState({
             name: ""
         });
+    }
+
+    openTagMenu(id){
+        this.setState({
+            openTag: id
+        })
+    }
+
+    closeTagMenu(){
+        this.setState({
+            openTag: null
+        })
+    }
+
+    handleTagRemove(id) {
+        this.props.deleteTagging({ tag_id: id, note_id: this.state.note_id });
+        this.closeTagMenu();
     }
 
     render () {
@@ -41,10 +61,19 @@ class TagForm extends React.Component {
         if (this.props.tags){
             tags = this.props.tags.map((tag) => {
                 return (
-                    <li key={tag.id}>
+                    <li 
+                    key={tag.id}
+                    tabIndex="1"
+                    onFocus={ ()=> this.openTagMenu(tag.id) }
+                    onBlur={ ()=> this.closeTagMenu() }
+                    className={"tag-form-item"}
+                    >
                         {tag.name}
                         &nbsp;
                         <i className="fas fa-angle-down"></i>
+                        <ul className={this.state.openTag === tag.id ? "tag-menu-open" : "tag-menu-closed"}>
+                            <li onClick={ ()=> this.handleTagRemove(tag.id)  }>Remove</li>
+                        </ul>
                     </li>
                 )
             })

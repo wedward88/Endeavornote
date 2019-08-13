@@ -1,0 +1,57 @@
+.tag-form form {
+    display: flex;
+}
+
+.tag-form-list {
+    display: flex;
+}
+
+.tag-form-item {
+    position: relative;
+    margin: 0px 2px;
+    font-size: 12px;
+    font-weight: lighter;
+    border-radius: 20px;
+    color: #666666;
+    background-color: #F0F1F1;
+    padding: 12px;
+}
+.tag-form-item:focus {
+    outline: none;
+}
+
+
+.tag-form input {
+    border: none;
+}
+.tag-form input:focus {
+    outline: none;
+    
+}
+
+.tag-menu-open {
+    position: absolute;
+    background-color: white;
+    box-shadow: 0 0 6px rgba(0,0,0,.3);
+    width: 100px;
+    height: 30px;
+    top: -35px;
+    right: -78px;
+    border-radius: 5px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.tag-menu-closed {
+    display: none;
+}
+
+.tag-menu-open li {
+    font-weight: bold;
+}
+
+.tag-menu-open li:hover {
+    color: red;
+    cursor: pointer;
+}
