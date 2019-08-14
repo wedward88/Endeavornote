@@ -1,0 +1,45 @@
+.tag-index {
+    width: 100%;
+    padding: 30px;
+}
+
+.tag-index h1 {
+    font-size: 20px;
+    margin-bottom: 45px;
+}
+
+.tag-list {
+    border-top: 2px solid #5b6b70;
+}
+
+.tag-list-item {
+    margin: 20px 0px;
+}
+
+.tag-list-item h1 {
+    margin-bottom: 20px;
+    font-size: 15px;
+    padding-left: 10px;
+}
+
+.tag-list-item ul {
+    font-size: 13px;
+    font-weight: lighter;
+    width: fit-content;
+}
+
+.tag-list-name {
+    margin: 10px 0px;
+    padding: 5px 10px;
+}
+
+.tag-list-name:hover {
+    background-color: #f2f2f2;
+    cursor: pointer;
+    border-radius: 25px;
+    padding: 5px 10px;
+}
+
+#tag-drop-hidden {
+    display: none;
+}

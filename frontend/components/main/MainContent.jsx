@@ -66,7 +66,6 @@ class MainContent extends React.Component {
                         <li><Link to="/main/notes/all">All Notes</Link></li>
                         <li><Link to="/main/notebooks_index">Notebooks</Link></li>
                         <li><Link to="/main/tags">Tags</Link></li>
-                        <li>Trash</li>
                     </ul>
                 </section>
 
