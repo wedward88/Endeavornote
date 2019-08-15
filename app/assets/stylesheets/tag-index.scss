@@ -8,6 +8,22 @@
     margin-bottom: 45px;
 }
 
+.tag-index-subheader {
+    display: flex;
+    justify-content: flex-end;
+    
+}
+
+.tag-index-subheader h2 {
+    margin-bottom: 10px;
+    font-size: 14px;
+    color: #00a82d;
+}
+
+.tag-index-subheader h2:hover {
+    cursor: pointer;
+}
+
 .tag-list {
     border-top: 2px solid #5b6b70;
 }
@@ -22,15 +38,22 @@
     padding-left: 10px;
 }
 
-.tag-list-item ul {
+.tag-list-item > div {
     font-size: 13px;
     font-weight: lighter;
     width: fit-content;
+    
 }
-
+.drop-relative-reference {
+    position: relative;
+}
 .tag-list-name {
     margin: 10px 0px;
     padding: 5px 10px;
+}
+
+.tag-list-name:focus {
+    outline: none;
 }
 
 .tag-list-name:hover {
@@ -41,5 +64,40 @@
 }
 
 #tag-drop-hidden {
+    opacity: 0;
+}
+
+#tag-menu-hidden {
     display: none;
+}
+
+.tag-menu {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    z-index: 1;
+    position: absolute;
+    background-color: white;
+    box-shadow: 0 0 6px rgba(0, 0, 0, 0.3);
+    width: 225px;
+    height: 111px;
+    top: 35px;
+    right: 2px;
+    border-radius: 5px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.tag-menu li {
+    box-sizing: border-box;
+    font-weight: bolder;
+    font-size: 14px;
+    padding: 6px 20px;
+    width: 100%;
+}
+
+.tag-menu li:hover {
+    cursor: pointer;
+    background-color: #f2f2f2;
 }

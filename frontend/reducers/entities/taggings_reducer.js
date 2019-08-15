@@ -14,6 +14,7 @@ const taggingsReducer = (state = {}, action) => {
             return merge({}, state, newTaggings);
         
         case RECEIVE_ONE_TAG:
+            if (!action.tag.tagging) return state;
             let newTagging = action.tag.tagging;
             let id = newTagging.id;
             return merge({}, state, {[id]: newTagging});
@@ -24,8 +25,11 @@ const taggingsReducer = (state = {}, action) => {
             return newState;
 
         case DELETE_TAG:
+            debugger
             newState = merge({}, state);
-            delete newState[action.tag.id];
+            Object.values(action.tag.taggings).forEach((tagging) => {
+                delete newState[tagging.id]
+            })
             return newState;
 
         default:

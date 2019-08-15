@@ -1,6 +1,6 @@
 import { connect } from 'react-redux';
 import TagsIndex from './TagsIndex';
-import { retrieveTags } from '../../../actions/tag_actions';
+import { retrieveTags, deleteTag } from '../../../actions/tag_actions';
 
 const msp = (state) => {
     return {
@@ -10,7 +10,8 @@ const msp = (state) => {
 
 const mdp = (dispatch) => {
     return {
-        retrieveTags: () => dispatch(retrieveTags())
+        retrieveTags: () => dispatch(retrieveTags()),
+        deleteTag: (tag) => dispatch(deleteTag(tag))
     }
 }
 

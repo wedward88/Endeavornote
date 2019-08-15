@@ -12,12 +12,15 @@ class Api::TagsController < ApplicationController
 
     def create
         # Use params note id to find the relevant note
-        @note = Note.find(params[:tag][:note_id])
+        if params[:tag][:note_id]
+            @note = Note.find(params[:tag][:note_id])
+        end
         # Use params tag name to find tag (if it exists)
         @tag = Tag.find_by(name: params[:tag][:name])
 
         # If tag exists already, create tagging
         # Return tag and tagging, or errors
+        
         if @tag && @tag.user_id == current_user.id
             @tagging = @tag.taggings.create(note_id: @note.id)
             if @tagging
@@ -27,7 +30,7 @@ class Api::TagsController < ApplicationController
             end
         # If tag doesn't exist, create it with the tags association (which creates a tagging as well)
         # Return tag and tagging, or errors
-        else
+        elsif !@tag && @note
             
             @new_tag = @note.tags.create(name: params[:tag][:name], user_id: current_user.id)
             if @new_tag.id != nil
@@ -36,6 +39,14 @@ class Api::TagsController < ApplicationController
             else
                 render json: @new_tag.errors.full_messages, status: 422
             end
+        else
+            
+            @tag = Tag.create(name: params[:tag][:name], user_id: current_user.id)
+            if @tag
+                render json: {:tag => @tag}
+            else
+                render json: @tag.errors.full_messages, status: 422
+            end
         end
     end
 
@@ -43,7 +54,7 @@ class Api::TagsController < ApplicationController
         @tag = Tag.find(params[:id])
 
         if @tag.update(tag_params)
-            render json: @tag
+            render json: {:tag => @tag}
         else
             render json: @tag.errors.full_messages, status: 422
         end
@@ -64,14 +75,16 @@ class Api::TagsController < ApplicationController
     end
 
     def destroy
-        
-        @note = Note.find(params[:tag][:note_id])
         @tag = Tag.find(params[:id])
         
         if @tag.user_id == current_user.id
-            if @note.taggings.where(tag_id: @tag.id).delete_all
+            @taggings = []
+            @tag.taggings.each do |tagging|
+                @taggings << tagging
+            end
+            if @tag.taggings.destroy_all
                 @tag.destroy
-                render json: @tag
+                render json: {:tag => @tag, :taggings => @taggings}
             else
                 render json: @tag.errors.full_messages, status: 418
             end

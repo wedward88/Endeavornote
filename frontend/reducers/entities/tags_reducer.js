@@ -19,7 +19,7 @@ const tagsReducer = (state = {}, action) => {
 
         case DELETE_TAG:
             const newState = merge({}, state);
-            delete newState[action.tag.id];
+            delete newState[action.tag.tag.id];
             return newState;
         
         default:
