@@ -79,6 +79,9 @@ class MainContent extends React.Component {
 
                 <ProtectRoute exact path='/main/tags' component={TagsIndexContainer} />
 
+                <ProtectRoute exact path='/main/tags/:tagMatch' component={NotesIndexContainer} />
+                <ProtectRoute exact path='/main/tags/:tagMatch' component={NoteEditorContainer} />
+
                 <ProtectRoute exact path='/main/notes/all' component={NotesIndexContainer} />
                 <ProtectRoute exact path='/main/notes/all' component={NoteEditorContainer} />
 

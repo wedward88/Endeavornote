@@ -25,9 +25,19 @@ class NotesIndex extends React.Component {
         let allNotes;
         let linkToPath;
         let numNotes = 0;
+        let tagFilter;
         // debugger
 
         if (this.state.mounted) {
+            if (this.props.match.params.tagMatch) tagFilter = 
+            <div id="tag-filter">
+                <h3 >{this.props.match.params.tagMatch}</h3>
+                &nbsp;
+                &nbsp;
+                <Link to="/main/notes/all">x</Link>
+            </div>
+            
+
             allNotes = this.props.notes.map((note)=>{
                 // debugger
                 if (note) {
@@ -38,6 +48,8 @@ class NotesIndex extends React.Component {
                         linkToPath = `/main/notes/all/${note.notebook_id}/${note.id}`
                     } else if (this.props.match.params.notebookId) {
                         linkToPath = `${this.props.match.url}` + `/${note.id}`
+                    } else if (this.props.match.params.tagMatch) {
+                        linkToPath = `/main/notebooks/${note.notebook_id}/${note.id}`
                     } else {
                         linkToPath = `${this.props.match.url}` + `/${note.notebook_id}` + `/${note.id}`
                     }
@@ -64,7 +76,10 @@ class NotesIndex extends React.Component {
             <div className="notes-index-container">
                 <div className="notes-index-header">
                     <h1>All Notes</h1>
-                    <h3>{numNotes} notes</h3>
+                    <div className="notes-info">
+                        <h3>{numNotes} notes</h3>
+                        {tagFilter}
+                    </div>
                 </div>
                 <div className="notes-index-list-container">
                     <ul>

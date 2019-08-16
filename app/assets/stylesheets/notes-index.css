@@ -26,6 +26,29 @@
     color: #a6a6a6;
 }
 
+.notes-info {
+    width: 100%;
+    display: flex;
+    align-items: center;
+}
+
+#tag-filter {
+    display: flex;
+    align-items: center;
+    margin-left: 75px;
+    background-color: #00a82d;
+    width: auto;
+    height: 20px;
+    padding: 2px 10px;
+    border-radius: 20px;
+    font-size: 15px;
+}
+
+#tag-filter * {
+ text-decoration: none;
+ color: white;
+}
+
 .notes-index-list-container {
     overflow: scroll;
 }

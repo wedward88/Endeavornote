@@ -1,5 +1,6 @@
 import React from 'react';
 import TagsIndexFormContainer from './TagsIndexFormContainer';
+import { Link } from 'react-router-dom';
 
 
 class TagsIndex extends React.Component {
@@ -82,7 +83,9 @@ class TagsIndex extends React.Component {
                                     tabIndex='1'
                                     onFocus={ () => this.toggleItem('itemClicked',tag.id) }
                                     onBlur={() => this.toggleItem('itemClicked')}
-                                >{tag.name}
+                                ><Link to={`/main/tags/${tag.name}`}>
+                                    {tag.name}
+                                </Link>
                                     &nbsp;
                                     &nbsp;
                                     <i 
