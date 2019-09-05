@@ -55,3 +55,8 @@
     color: red;
     cursor: pointer;
 }
+
+.fa-times:hover {
+    cursor: pointer;
+    color: #00a82d;
+}

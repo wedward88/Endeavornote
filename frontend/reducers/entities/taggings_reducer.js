@@ -25,7 +25,7 @@ const taggingsReducer = (state = {}, action) => {
             return newState;
 
         case DELETE_TAG:
-            debugger
+            // debugger
             newState = merge({}, state);
             Object.values(action.tag.taggings).forEach((tagging) => {
                 delete newState[tagging.id]
