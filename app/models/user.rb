@@ -29,7 +29,7 @@ class User < ApplicationRecord
         primary_key: :id,
         foreign_key: :user_id,
         class_name: :Tag
-    
+
     has_many :taggings,
         through: :tags,
         source: :taggings
@@ -73,6 +73,9 @@ class User < ApplicationRecord
         self.session_token
     end
 
+    def to_partial_path
+        'api/users/user'
+    end
 
     private
 
