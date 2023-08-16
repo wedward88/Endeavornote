@@ -80,6 +80,4 @@ test:
 #
 production:
   <<: *default
-  database: Endeavornote_production
-  username: Endeavornote
-  password: <%= ENV['ENDEAVORNOTE_DATABASE_PASSWORD'] %>
+  url: <%= ENV['DATABASE_URL'] %>
