@@ -1,0 +1,53 @@
+name: Deploy Endeavornote
+
+on:
+  push:
+    branches:
+      - master
+  workflow_dispatch:
+
+concurrency:
+  group: deploy-endeavornote
+  cancel-in-progress: false
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Connect to Tailscale
+        uses: tailscale/github-action@v4
+        with:
+          oauth-client-id: ${{ secrets.TS_OAUTH_CLIENT_ID }}
+          oauth-secret: ${{ secrets.TS_OAUTH_SECRET }}
+          tags: tag:ci
+
+      - name: Deploy over Tailscale SSH
+        env:
+          SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
+          VPS_HOST: ${{ secrets.VPS_HOST }}
+        run: |
+          set -euo pipefail
+          mkdir -p ~/.ssh
+          printf '%s\n' "$SSH_PRIVATE_KEY" | tr -d '\r' > ~/.ssh/id_ed25519
+          chmod 600 ~/.ssh/id_ed25519
+          ssh-keyscan -H "$VPS_HOST" >> ~/.ssh/known_hosts 2>/dev/null || true
+
+          ssh -i ~/.ssh/id_ed25519 -o IdentitiesOnly=yes -o StrictHostKeyChecking=accept-new \
+            "root@${VPS_HOST}" 'bash -s' <<'EOF'
+          set -euo pipefail
+          export NVM_DIR="$HOME/.nvm"
+          # shellcheck disable=SC1091
+          [ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"
+          export PATH="/root/.rbenv/bin:$PATH"
+          eval "$(rbenv init -)"
+          cd /root/dev/Endeavornote
+          git remote get-url origin >/dev/null
+          git fetch origin master
+          git reset --hard origin/master
+          bundle install
+          npm install
+          # Keep server-only secrets: .env.production + config/master.key
+          pm2 restart Endeavornote --update-env
+          pm2 save
+          echo "Endeavornote deploy OK"
+          EOF

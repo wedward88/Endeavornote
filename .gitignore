@@ -28,3 +28,7 @@
 
 /bundle.js
 /bundle.js.map
+# Server/runtime env
+.env
+.env.*
+!.env.example
